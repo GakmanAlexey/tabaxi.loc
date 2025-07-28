@@ -1,0 +1,420 @@
+{
+    "generated_at": "2025-07-07 20:57:53",
+    "routes_count": 69,
+    "routes": [
+        {
+            "path": "/admin/",
+            "class": "Modules\\Admin\\Controller\\Index",
+            "method": "index",
+            "module": "admin"
+        },
+        {
+            "path": "/admin/shop/",
+            "class": "Modules\\Admin\\Controller\\Index",
+            "method": "index",
+            "module": "admin"
+        },
+        {
+            "path": "/admin/system/",
+            "class": "Modules\\Admin\\Controller\\Index",
+            "method": "index",
+            "module": "admin"
+        },
+        {
+            "path": "/admin/site/",
+            "class": "Modules\\Admin\\Controller\\Index",
+            "method": "index",
+            "module": "admin"
+        },
+        {
+            "path": "/admin/crm/",
+            "class": "Modules\\Admin\\Controller\\Index",
+            "method": "index",
+            "module": "admin"
+        },
+        {
+            "path": "/admin/system/service/",
+            "class": "Modules\\Admin\\Controller\\Service",
+            "method": "index",
+            "module": "admin"
+        },
+        {
+            "path": "/",
+            "class": "Modules\\Core\\Controller\\Index",
+            "method": "index",
+            "module": "core"
+        },
+        {
+            "path": "/ban/",
+            "class": "Modules\\Core\\Controller\\Ban",
+            "method": "index",
+            "module": "core"
+        },
+        {
+            "path": "/ajax/service/css/admin/",
+            "class": "Modules\\Core\\Controller\\Adminajax",
+            "method": "css_admin",
+            "module": "core"
+        },
+        {
+            "path": "/ajax/service/css/default/",
+            "class": "Modules\\Core\\Controller\\Adminajax",
+            "method": "css_default",
+            "module": "core"
+        },
+        {
+            "path": "/admin/site/files/",
+            "class": "Modules\\Files\\Controller\\Admin",
+            "method": "index",
+            "module": "files"
+        },
+        {
+            "path": "/admin/site/files/new/",
+            "class": "Modules\\Files\\Controller\\Admin",
+            "method": "new",
+            "module": "files"
+        },
+        {
+            "path": "/admin/system/group/",
+            "class": "Modules\\Group\\Controller\\Admin",
+            "method": "index",
+            "module": "group"
+        },
+        {
+            "path": "/admin/system/group/edit/",
+            "class": "Modules\\Group\\Controller\\Admin",
+            "method": "edit",
+            "module": "group"
+        },
+        {
+            "path": "/privacy/",
+            "class": "Modules\\License\\Controller\\Index",
+            "method": "index",
+            "module": "license"
+        },
+        {
+            "path": "/news/",
+            "class": "Modules\\News\\Controller\\Index",
+            "method": "categor",
+            "module": "news"
+        },
+        {
+            "path": "/news/element/",
+            "class": "Modules\\News\\Controller\\Index",
+            "method": "news",
+            "module": "news"
+        },
+        {
+            "path": "/news/block/",
+            "class": "Modules\\News\\Controller\\Index",
+            "method": "block",
+            "module": "news"
+        },
+        {
+            "path": "/admin/site/news/",
+            "class": "Modules\\News\\Controller\\Admin",
+            "method": "index",
+            "module": "news"
+        },
+        {
+            "path": "/admin/site/news/new/",
+            "class": "Modules\\News\\Controller\\Admin",
+            "method": "new",
+            "module": "news"
+        },
+        {
+            "path": "/admin/system/permission/",
+            "class": "Modules\\Permission\\Controller\\Admin",
+            "method": "index",
+            "module": "permission"
+        },
+        {
+            "path": "/admin/system/permission/edit/",
+            "class": "Modules\\Permission\\Controller\\Admin",
+            "method": "edit",
+            "module": "permission"
+        },
+        {
+            "path": "/ajax/service/router/start/",
+            "class": "Modules\\Router\\Controller\\Adminajax",
+            "method": "start",
+            "module": "router"
+        },
+        {
+            "path": "/admin/site/seo/",
+            "class": "Modules\\Seo\\Controller\\Admin",
+            "method": "index",
+            "module": "seo"
+        },
+        {
+            "path": "/admin/site/seo/edit/",
+            "class": "Modules\\Seo\\Controller\\Admin",
+            "method": "edit",
+            "module": "seo"
+        },
+        {
+            "path": "/ajax/service/seo/admin/",
+            "class": "Modules\\Seo\\Controller\\Adminajax",
+            "method": "seo_admin",
+            "module": "seo"
+        },
+        {
+            "path": "/ajax/service/seo/default/",
+            "class": "Modules\\Seo\\Controller\\Adminajax",
+            "method": "seo_default",
+            "module": "seo"
+        },
+        {
+            "path": "/admin/shop/brand/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "brand",
+            "module": "shop"
+        },
+        {
+            "path": "/admin/shop/brand/new/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "newbrand",
+            "module": "shop"
+        },
+        {
+            "path": "/admin/shop/brand/edit/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "editbrand",
+            "module": "shop"
+        },
+        {
+            "path": "/brand/",
+            "class": "Modules\\Shop\\Controller\\Brand",
+            "method": "index",
+            "module": "shop"
+        },
+        {
+            "path": "/brand/test/",
+            "class": "Modules\\Shop\\Controller\\Brand",
+            "method": "test",
+            "module": "shop"
+        },
+        {
+            "path": "/brandblock/",
+            "class": "Modules\\Shop\\Controller\\Brand",
+            "method": "block",
+            "module": "shop"
+        },
+        {
+            "path": "/admin/shop/categor/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "categor",
+            "module": "shop"
+        },
+        {
+            "path": "/admin/shop/categor/new/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "newcategor",
+            "module": "shop"
+        },
+        {
+            "path": "/admin/shop/categor/edit/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "editcategor",
+            "module": "shop"
+        },
+        {
+            "path": "/catalog/",
+            "class": "Modules\\Shop\\Controller\\Catalog",
+            "method": "main",
+            "module": "shop"
+        },
+        {
+            "path": "/catalog/test/",
+            "class": "Modules\\Shop\\Controller\\Catalog",
+            "method": "open",
+            "module": "shop"
+        },
+        {
+            "path": "/admin/shop/product/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "product",
+            "module": "shop"
+        },
+        {
+            "path": "/admin/shop/product/new/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "newproduct",
+            "module": "shop"
+        },
+        {
+            "path": "/admin/shop/product/edit/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "editproduct",
+            "module": "shop"
+        },
+        {
+            "path": "/catalog/test/test1/",
+            "class": "Modules\\Shop\\Controller\\Product",
+            "method": "open",
+            "module": "shop"
+        },
+        {
+            "path": "/admin/shop/variation/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "variation",
+            "module": "shop"
+        },
+        {
+            "path": "/admin/shop/variation/new/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "newvariation",
+            "module": "shop"
+        },
+        {
+            "path": "/admin/shop/variation/edit/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "editvariation",
+            "module": "shop"
+        },
+        {
+            "path": "/admin/shop/specific/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "specific",
+            "module": "shop"
+        },
+        {
+            "path": "/admin/shop/specific/new/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "newspecific",
+            "module": "shop"
+        },
+        {
+            "path": "/admin/shop/specific/edit/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "editspecific",
+            "module": "shop"
+        },
+        {
+            "path": "/admin/shop/product/specific/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "productspecific",
+            "module": "shop"
+        },
+        {
+            "path": "/admin/shop/variation/specific/",
+            "class": "Modules\\Shop\\Controller\\Admin",
+            "method": "variationspecific",
+            "module": "shop"
+        },
+        {
+            "path": "/user/login/",
+            "class": "Modules\\User\\Controller\\Index",
+            "method": "login",
+            "module": "user"
+        },
+        {
+            "path": "/user/login/success/",
+            "class": "Modules\\User\\Controller\\Index",
+            "method": "login_success",
+            "module": "user"
+        },
+        {
+            "path": "/user/register/",
+            "class": "Modules\\User\\Controller\\Index",
+            "method": "register",
+            "module": "user"
+        },
+        {
+            "path": "/user/register/success/",
+            "class": "Modules\\User\\Controller\\Index",
+            "method": "register_success",
+            "module": "user"
+        },
+        {
+            "path": "/user/verify-email/success/",
+            "class": "Modules\\User\\Controller\\Index",
+            "method": "verify_success",
+            "module": "user"
+        },
+        {
+            "path": "/user/verify-email/failure/",
+            "class": "Modules\\User\\Controller\\Index",
+            "method": "verify_failure",
+            "module": "user"
+        },
+        {
+            "path": "/user/exit/",
+            "class": "Modules\\User\\Controller\\Index",
+            "method": "logout",
+            "module": "user"
+        },
+        {
+            "path": "/user/verify-email/",
+            "class": "Modules\\User\\Controller\\Index",
+            "method": "verify_id",
+            "module": "user"
+        },
+        {
+            "path": "/user/recover/",
+            "class": "Modules\\User\\Controller\\Index",
+            "method": "recover",
+            "module": "user"
+        },
+        {
+            "path": "/user/recover/success/",
+            "class": "Modules\\User\\Controller\\Index",
+            "method": "recover_success",
+            "module": "user"
+        },
+        {
+            "path": "/user/recover/step2/",
+            "class": "Modules\\User\\Controller\\Index",
+            "method": "recover_step_2",
+            "module": "user"
+        },
+        {
+            "path": "/user/recover/step2/success/",
+            "class": "Modules\\User\\Controller\\Index",
+            "method": "recover_step_2_success",
+            "module": "user"
+        },
+        {
+            "path": "/user/recover/step2/failure/",
+            "class": "Modules\\User\\Controller\\Index",
+            "method": "recover_step_2_failure",
+            "module": "user"
+        },
+        {
+            "path": "/admin/system/user/",
+            "class": "Modules\\User\\Controller\\Admin",
+            "method": "index",
+            "module": "user"
+        },
+        {
+            "path": "/admin/system/user/edit/",
+            "class": "Modules\\User\\Controller\\Admin",
+            "method": "edit",
+            "module": "user"
+        },
+        {
+            "path": "/ajax/user/active/",
+            "class": "Modules\\User\\Controller\\Adminajax",
+            "method": "active",
+            "module": "user"
+        },
+        {
+            "path": "/ajax/user/noactive/",
+            "class": "Modules\\User\\Controller\\Adminajax",
+            "method": "noactive",
+            "module": "user"
+        },
+        {
+            "path": "/ajax/user/unban/",
+            "class": "Modules\\User\\Controller\\Adminajax",
+            "method": "unban",
+            "module": "user"
+        },
+        {
+            "path": "/ajax/user/ban/",
+            "class": "Modules\\User\\Controller\\Adminajax",
+            "method": "ban",
+            "module": "user"
+        }
+    ]
+}

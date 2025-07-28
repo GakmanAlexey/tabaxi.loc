@@ -1,0 +1,17 @@
+{
+    "login": {
+        "class": "\\Modules\\User\\Modul\\Send",
+        "method": "login",
+        "params": []
+    },
+    "register": {
+        "class": "\\Modules\\User\\Modul\\Send",
+        "method": "register",
+        "params": []
+    },
+    "recover": {
+        "class": "\\Modules\\User\\Modul\\Send",
+        "method": "recover",
+        "params": []
+    }
+}
