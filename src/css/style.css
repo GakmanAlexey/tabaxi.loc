@@ -5,31 +5,6 @@
 
 
 
-body{
-    margin: 0;
-    padding: 0;
-    background: #F0F0F0;
-    font-family: 'inter-medium';
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    align-items: center;
-    font-family: 'inter-medium';
-}
-
-
-
-.container {
-    width: 1160px;
-    padding: 0 20px;
-    margin: 0 auto;
-}
-
-
-.full_height_wrapper {
-    flex: 1 0 auto; /* Занимает всё доступное пространство по высоте */
-    width: 100%;
-}
 
 
 .b001_footer {
@@ -62,83 +37,1688 @@ body{
     font-size: 14px;
     text-decoration: none;
 }
-.b002_nav {
-    margin-top: 15px;
-}
+  @font-face {
+            font-family: 'InterMedium';
+            src: url('/modules/core/src/font/Inter-Medium.woff2');
+            font-style: normal;
+            font-display: swap;
+        }
 
-.b002_nav_box {
-    height: 66px;
-    width: calc(100% - 60px);
-    border-radius: 20px;
-    padding: 0 30px;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    align-items: center;
-    background: #fff;
-}
-.b002_nav_logo_box {
-    width: 65px;
-}
-.b002_nav_navigatin {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-}
-.b002_nav_item {
-    color: #332428;
-    text-decoration: none;
-}
-.b002_nav_btn {
-    padding: 7px 26px;
-    background: #2F6BF2;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 14px;
-}
+  @font-face {
+            font-family: 'InterRegular';
+            src: url('/modules/core/src/font/Inter-Regular.woff2');
+            font-style: normal;
+            font-display: swap;
+        }
 
-.b003_main_screen{
-    width: 100%;
-    height: 100vh;
-}
+  @font-face {
+            font-family: 'InterSemiBold';
+            src: url('/modules/core/src/font/Inter-SemiBold.woff2');
+            font-style: normal;
+            font-display: swap;
+        }
 
-canvas {
-  background-color: #af2d2d;
-  width: 100%;
-  height: 100%;
-  display: block;
-  position: absolute;
-  top: 0;
-  z-index: -1;
-}
+@font-face {
+            font-family: 'Bergamasco';
+            src: url('/modules/core/src/font/Bergamasco Regular.otf');
+        }
+  
+  /* Сброс стилей и базовые настройки */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.b003_main_screen_hero_wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 150px;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-.b003_main_screen_hero {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: start;
-    max-width: 500px;
-}
-.b003_main_screen_hero_title {
-    font-size: 46px;
-    margin-bottom: 0;
-}
-.b003_main_screen_hero_dicription {
-}
-.b003_main_screen_hero_btn {
-    padding: 7px 26px;
-    background: #2F6BF2;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 14px;
-}
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            background-color: #F1E8E8;
+        }
+
+        /* Контейнер с 12 колонками */
+        .tut_001_container {
+            width: 1160px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Главный экран */
+        .tut_001_hero {
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .tut_001_hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .tut_001_hero_content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 850px;
+            margin-bottom: 100px;
+        }
+
+        .tut_001_hero_title {
+            font-family: 'Bergamasco';
+            font-size: 120px;
+            text-transform: uppercase;
+            font-weight: 100;
+            line-height: 105%;
+        }
+
+        .tut_001_hero_description_two{
+            text-transform: uppercase;
+            font-family: 'Bergamasco';
+            font-size: 44px;
+            margin-bottom: 20px;
+            font-weight: 100;
+        }
+
+        .tut_001_hero_description {
+            font-family: 'InterRegular';
+            font-size: 16px;
+            line-height: 1.8;
+            font-weight: 100;
+            color: #A2A1A1;
+            max-width: 560px;
+        }
+
+        /* Второй блок */
+        .tut_001_second_section {
+            padding: 100px 0;
+        }
+
+        .tut_001_section_header {
+            display: flex;
+            align-items: center;
+        }
+
+        .tut_001_section_icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .tut_001_section_icon img{
+            width: 100%;
+        }
+
+        .tut_001_section_title {
+            font-family: 'Bergamasco';
+            font-size: 72px;
+            text-transform: uppercase;
+            font-weight: 100;
+            line-height: 105%;
+            color: #5F4545;
+        }
+
+        .tut_001_section_description {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 50px;
+            max-width: 500px;
+            color: #666666;
+        }
+
+        /* Плашки */
+        .tut_001_cards_container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .tut_001_card {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+
+        .tut_001_card_image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .tut_001_card_overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .tut_001_card:hover .tut_001_card_overlay {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .tut_001_card_content {
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .tut_001_card_title {
+            font-size: 32px;
+            font-family: 'Bergamasco';
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 100;
+        }
+
+        .tut_001_card_description {
+            font-size: 14px;
+        }
+
+        
+         /* страница списка игр */
+        .tut_002_party_card {
+            margin-bottom: 40px;
+        }
+        
+        .tut_002_party_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #F5EEEE;
+            padding: 20px 20px;
+            border: 1px solid #F8F4F4;
+            border-radius: 20px;
+        }
+        
+        .tut_002_party_title {
+            font-family: 'Bergamasco';
+            text-transform: uppercase;
+            font-size: 46px;
+            font-weight: 100;
+            color: #5F4545;
+            margin: 0;
+        }
+        
+        .tut_002_party_slots {
+            text-align: right;
+        }
+        
+        .tut_002_slots_count {
+            font-family: 'Bergamasco';
+            font-size: 46px;
+            font-weight: 100;
+            color: #5F4545;
+            line-height: 1;
+        }
+        
+        .tut_002_slots_label {
+            font-size: 16px;
+            color: #666666;
+            margin-top: -10px;
+        }
+        
+        .tut_002_party_image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+        
+        .tut_002_party_content {
+            background-color: #F5EEEE;
+            padding: 20px 20px;
+            border: 1px solid #F8F4F4;
+            border-radius: 20px;
+        }
+
+        .tut_002_party_content_wrap{
+            display: flex;
+            gap: 20px;
+        }
+        
+        .tut_002_description_section {
+            margin-bottom: 30px;
+            max-width: 740px;
+        }
+        
+        .tut_002_description_title {
+            font-size: 30px;
+            font-family: 'Bergamasco';
+            text-transform: uppercase;
+            font-weight: 100;
+            color: #5F4545;
+            margin-bottom: 15px;
+        }
+        
+        .tut_002_description_text {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .tut_002_requirements_section {
+            margin-bottom: 30px;
+        }
+        
+        .tut_002_requirements_title {
+            font-size: 30px;
+            font-family: 'Bergamasco';
+            text-transform: uppercase;
+            font-weight: 100;
+            color: #5F4545;
+            margin-bottom: 15px;
+        }
+        
+        .tut_002_requirements_table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .tut_002_requirements_table tr:nth-child(odd) {
+            background-color: #F1E8E8;
+        }
+        
+        .tut_002_requirements_table tr:nth-child(even) {
+            background-color: #EADCDC;
+        }
+        
+        .tut_002_requirements_table td {
+            padding: 5px 10px;
+            border: none;
+            color: #666666;
+            font-size: 14px;
+        }
+        
+        .tut_002_requirements_table td:first-child {
+            font-weight: 600;
+            width: 30%;
+            color: #000;
+        }
+        
+        .tut_002_location_link {
+            color: #5F4545;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .tut_002_location_link:hover {
+            text-decoration: underline;
+        }
+        
+        .tut_002_actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        /* Кнопка "Записаться" */
+        .tut_002_btn_primary {
+            background-color: #5F4545;
+            color: #F1E8E8;
+            border: none;
+            padding: 12px 25px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        /* ХОВЕР ЭФФЕКТ ДЛЯ КНОПКИ "ЗАПИСАТЬСЯ" - можно заменить */
+        .tut_002_btn_primary:hover {
+            background-color: #4a3535;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(95, 69, 69, 0.3);
+        }
+        
+        .tut_002_btn_primary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .tut_002_btn_primary:hover::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+        
+        /* Кнопка "Подробнее" */
+        .tut_002_btn_secondary {
+            background-color: transparent;
+            color: #5F4545;
+            border: 1px solid #5F4545;
+            padding: 12px 25px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        /* ХОВЕР ЭФФЕКТ ДЛЯ КНОПКИ "ПОДРОБНЕЕ" - можно заменить */
+        .tut_002_btn_secondary:hover {
+            background-color: #5F4545;
+            color: #F1E8E8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(95, 69, 69, 0.2);
+        }
+        
+
+        /* внутри страницы*/
+        .tut_003_game_page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Обложка игры */
+        .tut_003_game_cover {
+            width: 100%;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .tut_003_cover_image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .tut_003_cover_overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 30px;
+            color: white;
+        }
+        
+        .tut_003_game_title {
+            font-size: 40px;
+            font-family: 'Bergamasco';
+            text-transform: uppercase;
+            font-weight: 100;
+            margin-bottom: 10px;
+        }
+        
+        .tut_003_game_meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        /* Основной контент - двухколоночная сетка */
+        .tut_003_content_grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        /* Левая колонка */
+        .tut_003_main_content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* Блок описания */
+        .tut_003_section {
+            background: #F5EEEE;
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid #F8F4F4;
+        }
+        
+        .tut_003_section_title {
+            font-size: 24px;
+            font-family: 'Bergamasco';
+            text-transform: uppercase;
+            font-weight: 100;
+            color: #5F4545;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tut_003_section_title svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .tut_003_description_text {
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        /* Блок требований */
+        .tut_003_requirements_grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .tut_003_requirement_item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .tut_003_requirement_label {
+            font-size: 14px;
+            color: #777;
+            font-weight: 500;
+        }
+        
+        .tut_003_requirement_value {
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        /* Блок комментария ГМа */
+        .tut_003_gm_comment {
+            background: #F8F6F4;
+            border-left: 4px solid #5F4545;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .tut_003_gm_header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .tut_003_gm_avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .tut_003_gm_name {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .tut_003_gm_role {
+            font-size: 14px;
+            color: #777;
+        }
+        
+        /* Правая колонка */
+        .tut_003_sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        /* Блок полезного */
+        .tut_003_downloads {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .tut_003_download_btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #5F4545;
+            color: #F1E8E8;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        /* ХОВЕР ЭФФЕКТ ДЛЯ КНОПКИ СКАЧИВАНИЯ - можно заменить */
+        .tut_003_download_btn:hover {
+            background: #4a3535;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(95, 69, 69, 0.3);
+        }
+        
+        .tut_003_download_btn svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        /* Блок записи */
+        .tut_003_join_section {
+            text-align: center;
+        }
+        
+        .tut_003_players_count {
+            font-size: 32px;
+            font-family: 'Bergamasco';
+            text-transform: uppercase;
+            font-weight: 100;
+            color: #5F4545;
+            color: #5F4545;
+            margin-bottom: 5px;
+        }
+        
+        .tut_003_players_label {
+            color: #777;
+            margin-bottom: 20px;
+        }
+        
+        .tut_003_join_btn {
+            background: #5F4545;
+            color: #F1E8E8;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        /* ХОВЕР ЭФФЕКТ ДЛЯ КНОПКИ ЗАПИСИ - можно заменить */
+        .tut_003_join_btn:hover {
+            background: #4a3535;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(95, 69, 69, 0.3);
+        }
+        
+        /* Блок участников */
+        .tut_003_participants {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .tut_003_participant_group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .tut_003_group_title {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .tut_003_users_list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .tut_003_user_card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        /* ХОВЕР ЭФФЕКТ ДЛЯ КАРТОЧКИ ПОЛЬЗОВАТЕЛЯ - можно заменить */
+        .tut_003_user_card:hover {
+            background: #F8F6F4;
+            transform: translateX(5px);
+        }
+        
+        .tut_003_user_avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #EADCDC;
+        }
+        
+        .tut_003_user_info {
+            flex: 1;
+        }
+        
+        .tut_003_user_name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 3px;
+        }
+        
+        .tut_003_user_nickname {
+            font-size: 14px;
+            color: #777;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 968px) {
+            .tut_003_content_grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .tut_003_sidebar {
+                order: -1;
+            }
+            
+            .tut_003_game_cover {
+                height: 300px;
+            }
+            
+            .tut_003_game_title {
+                font-size: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .tut_003_requirements_grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tut_003_game_cover {
+                height: 250px;
+            }
+            
+            .tut_003_game_title {
+                font-size: 26px;
+            }
+        }
+        
+        /* Дополнительные стили для статусов */
+        .tut_003_status_badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+        
+        .tut_003_status_active {
+            background: #E8F5E8;
+            color: #2E7D32;
+        }
+        
+        .tut_003_status_full {
+            background: #FFEBEE;
+            color: #C62828;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    /* Базовые стили для масштабируемых контейнеров */
+    .scale-container {
+        width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    /* Отключение масштабирования для определенных элементов */
+    .no-scale,
+    [data-no-scale] {
+        transform: none !important;
+        zoom: 1 !important;
+    }
+
+    /* CSS переменная для использования в других стилях */
+    :root {
+        --scale-ratio: 1;
+    }
+
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 1024px) {
+            .tut_001_cards_container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tut_001_hero_title {
+                font-size: 2.5rem;
+            }
+            
+            .tut_001_section_title {
+                font-size: 2rem;
+            }
+            
+            .tut_001_cards_container {
+                display: flex;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                scroll-snap-type: x mandatory;
+            }
+            
+            .tut_001_card {
+                flex: 0 0 70%;
+                margin-right: 10px;
+                scroll-snap-align: start;
+            }
+            
+            /* Кастомный скроллбар */
+            .tut_001_cards_container::-webkit-scrollbar {
+                height: 4px;
+            }
+            
+            .tut_001_cards_container::-webkit-scrollbar-track {
+                background: #B7A7A7;
+                border-radius: 6px;
+            }
+            
+            .tut_001_cards_container::-webkit-scrollbar-thumb {
+                background: #5F4545;
+                border-radius: 6px;
+            }
+            
+            .tut_001_cards_container::-webkit-scrollbar-thumb:hover {
+                background: #5F4545;
+            }
+
+            
+            .tut_002_party_header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .tut_002_party_slots {
+                text-align: left;
+            }
+            
+            .tut_002_party_image {
+                height: 300px;
+            }
+            
+            .tut_002_actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tut_001_hero_title {
+                font-size: 58px;
+            }
+            
+            .tut_001_hero_description {
+                font-size: 12px;
+            }
+            
+            .tut_001_section_title {
+                font-size: 1.8rem;
+            }
+            
+            .tut_001_card {
+                flex: 0 0 85%;
+            }
+
+            .scale-container{
+                width: 100% !important;
+            }
+
+            .tut_001_container{
+                padding: 0 10px;                
+                width: 100%;
+            }
+
+            .tut_001_section_description{
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+
+            .tut_001_card {
+                height: 160px;
+            }
+
+            .tut_001_card_title{
+                font-size: 22px;
+            }
+            
+            .tut_001_second_section {
+                padding: 50px 0;
+            }
+
+            .tut_001_hero_description_two{
+                font-size: 21px;
+            }
+
+            .tut_001_hero{
+                height: 80vh;
+            }
+
+            .tut_001_hero_content{
+            margin-bottom: -140px;
+
+            }
+
+            .tut_002_party_title {
+                font-size: 32px;                
+            }
+
+            .tut_002_party_content_wrap{
+                flex-direction: column;
+            }
+
+            .tut_002_slots_count{
+                font-size: 32px;
+            }
+
+            .tut_002_party_content{
+                padding: 10px 0;
+            }
+
+            .tut_002_description_title{
+                margin-bottom: 0;
+            }
+
+            .tut_002_requirements_title{
+                margin-bottom: 0;                
+            }
+
+            .tut_002_requirements_table td:first-child {
+            width: 50%;
+            }
+
+            .tut_002_requirements_table td {
+                font-size: 12px;
+            }
+
+            .tut_002_requirements_section{
+                margin-bottom: 0;
+            }
+
+            .tut_003_game_meta{
+                flex-direction: column;
+                align-items: start;
+            }
+        }
+
+        /* Автоскейл для больших экранов */
+        @media (min-width: 1300px) {
+            .tut_001_container {
+                width: 100%;
+            }
+            
+        }
+
+         /* Автоскейл для больших экранов */
+        @media (max-width: 1299px) {
+            .tut_001_container {
+            width: 100% ;
+            }
+
+        }
+
+        
+
+
+
+
+        .tut_nav_004_content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 20px;
+            text-align: center;
+        }
+
+        .tut_nav_004_content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .tut_nav_004_content p {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Стили навигации */
+        .tut_nav_004_container {
+            position: fixed;
+            bottom: 60px;
+            right: 360px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 5px 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            width: auto;
+            overflow: hidden;
+        }
+
+        .tut_nav_004_nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            transition: all 0.3s ease;
+            min-width: max-content;
+        }
+
+        /* Логотип */
+        .tut_nav_004_logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .tut_nav_004_logo_icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #5F4545, #8B6B6B);
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .tut_nav_004_logo_text {
+            font-size: 14px;
+            font-weight: 700;
+            color: #5F4545;
+            white-space: nowrap;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Центральное меню */
+        .tut_nav_004_menu {
+            display: flex;
+            gap: 30px;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .tut_nav_004_menu_item {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 4px 16px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            white-space: nowrap;
+            opacity: 1;
+            font-size: 14px;
+        }
+
+        .tut_nav_004_menu_item:hover {
+            background: rgba(95, 69, 69, 0.1);
+            color: #5F4545;
+        }
+
+        .tut_nav_004_menu_item.active {
+            background: #5F4545;
+            color: white;
+        }
+
+        /* Кнопка личного кабинета */
+        .tut_nav_004_profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px 20px;
+            background: #5F4545;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            flex-shrink: 0;
+            white-space: nowrap;
+            opacity: 1;
+            font-size: 14px;
+            align-self: flex-end;
+        }
+
+        .tut_nav_004_profile:hover {
+            background: #4a3535;
+            transform: translateY(-2px);
+        }
+
+        .tut_nav_004_profile_icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .tut_nav_004_toggle_wrap{
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        /* Стрелка для сворачивания/разворачивания */
+        .tut_nav_004_toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+            margin-left: 10px;
+            flex-shrink: 0;
+        }
+
+        .tut_nav_004_toggle:hover {
+            opacity: 1;
+        }
+
+        .tut_nav_004_toggle_icon {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease;
+            rotate: 90deg;
+        }
+
+        /* Состояния навигации */
+        /* Свернутое состояние */
+        .tut_nav_004_container.collapsed {
+            width: 52px !important;
+            padding: 5px 5px;
+            right: 60px;
+        }
+
+        .tut_nav_004_container.collapsed .tut_nav_004_menu,
+        .tut_nav_004_container.collapsed .tut_nav_004_profile,
+        .tut_nav_004_container.collapsed .tut_nav_004_logo_text {
+            opacity: 0;
+            width: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .tut_nav_004_container.collapsed .tut_nav_004_toggle_icon {
+            transform: rotate(180deg);
+        }
+
+        .tut_nav_004_mobile_menu {
+            display: none;
+        }
+
+        /* Мобильная версия */
+        @media (max-width: 768px) {
+            .tut_nav_004_container {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100% !important;
+                border-radius: 0;
+                padding: 15px 5px;
+                box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1);
+                transform: none !important;
+                animation: none !important;
+            }
+
+            .tut_nav_004_nav {
+                display: none;
+            }
+
+            /* Мобильное меню в виде иконок */
+            .tut_nav_004_mobile_menu {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 100%;
+            }
+
+            .tut_nav_004_mobile_item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 4px;
+                text-decoration: none;
+                color: #666;
+                padding: 8px 12px;
+                border-radius: 12px;
+                transition: all 0.3s ease;
+                min-width: 60px;
+                flex: 1;
+                max-width: 80px;
+            }
+
+            .tut_nav_004_mobile_item:hover,
+            .tut_nav_004_mobile_item.active {
+                color: #5F4545;
+                background: rgba(95, 69, 69, 0.1);
+            }
+
+            .tut_nav_004_mobile_icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .tut_nav_004_mobile_label {
+                font-size: 0.7rem;
+                font-weight: 500;
+            }
+
+            /* На мобилке скрываем стрелку и логотип */
+            .tut_nav_004_toggle {
+                display: none;
+            }
+
+            .tut_nav_004_logo {
+                display: none;
+            }
+
+            /* Отключаем анимации сворачивания на мобилке */
+            .tut_nav_004_container.collapsed {
+                width: 100% !important;
+                padding: 15px 20px !important;
+                border-radius: 0 !important;
+                bottom: 0 !important;
+                right: 0 !important;
+                left: 0 !important;
+            }
+
+            .tut_nav_004_container.collapsed .tut_nav_004_mobile_menu {
+                display: flex !important;
+            }
+        }
+
+        /* Анимация появления/исчезновения */
+        @keyframes tut_nav_004_slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tut_nav_004_container {
+            animation: tut_nav_004_slideUp 0.5s ease-out;
+        }
+
+        /* Десктопные стили */
+        @media (min-width: 769px) {
+            .tut_nav_004_mobile_menu {
+                display: none !important;
+            }
+            
+            .tut_nav_004_nav {
+                display: flex;
+            }
+        }
+ 
+  /* Сброс стилей и базовые настройки */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            background-color: #F1E8E8;
+        }
+
+        /* Контейнер с 12 колонками */
+        .tut_001_container {
+            width: 1160px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Главный экран */
+        .tut_001_hero {
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .tut_001_hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .tut_001_hero_content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 850px;
+            margin-bottom: 100px;
+        }
+
+        .tut_001_hero_title {
+            font-family: 'Bergamasco';
+            font-size: 120px;
+            text-transform: uppercase;
+            font-weight: 100;
+            line-height: 105%;
+        }
+
+        .tut_001_hero_description_two{
+            text-transform: uppercase;
+            font-family: 'Bergamasco';
+            font-size: 44px;
+            margin-bottom: 20px;
+            font-weight: 100;
+        }
+
+        .tut_001_hero_description {
+            font-family: 'InterRegular';
+            font-size: 16px;
+            line-height: 1.8;
+            font-weight: 100;
+            color: #A2A1A1;
+            max-width: 560px;
+        }
+
+        /* Второй блок */
+        .tut_001_second_section {
+            padding: 100px 0;
+        }
+
+        .tut_001_section_header {
+            display: flex;
+            align-items: center;
+        }
+
+        .tut_001_section_icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .tut_001_section_icon img{
+            width: 100%;
+        }
+
+        .tut_001_section_title {
+            font-family: 'Bergamasco';
+            font-size: 72px;
+            text-transform: uppercase;
+            font-weight: 100;
+            line-height: 105%;
+            color: #5F4545;
+        }
+
+        .tut_001_section_description {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 50px;
+            max-width: 500px;
+            color: #666666;
+        }
+
+        /* Плашки */
+        .tut_001_cards_container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .tut_001_card {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+
+        .tut_001_card_image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .tut_001_card_overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .tut_001_card:hover .tut_001_card_overlay {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .tut_001_card_content {
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .tut_001_card_title {
+            font-size: 32px;
+            font-family: 'Bergamasco';
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 100;
+        }
+
+        .tut_001_card_description {
+            font-size: 14px;
+        }
+  
+         /* страница списка игр */
+        .tut_002_party_card {
+            margin-bottom: 40px;
+        }
+        
+        .tut_002_party_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #F5EEEE;
+            padding: 20px 20px;
+            border: 1px solid #F8F4F4;
+            border-radius: 20px;
+        }
+        
+        .tut_002_party_title {
+            font-family: 'Bergamasco';
+            text-transform: uppercase;
+            font-size: 46px;
+            font-weight: 100;
+            color: #5F4545;
+            margin: 0;
+        }
+        
+        .tut_002_party_slots {
+            text-align: right;
+        }
+        
+        .tut_002_slots_count {
+            font-family: 'Bergamasco';
+            font-size: 46px;
+            font-weight: 100;
+            color: #5F4545;
+            line-height: 1;
+        }
+        
+        .tut_002_slots_label {
+            font-size: 16px;
+            color: #666666;
+            margin-top: -10px;
+        }
+        
+        .tut_002_party_image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+        
+        .tut_002_party_content {
+            background-color: #F5EEEE;
+            padding: 20px 20px;
+            border: 1px solid #F8F4F4;
+            border-radius: 20px;
+        }
+
+        .tut_002_party_content_wrap{
+            display: flex;
+            gap: 20px;
+        }
+        
+        .tut_002_description_section {
+            margin-bottom: 30px;
+            max-width: 740px;
+        }
+        
+        .tut_002_description_title {
+            font-size: 30px;
+            font-family: 'Bergamasco';
+            text-transform: uppercase;
+            font-weight: 100;
+            color: #5F4545;
+            margin-bottom: 15px;
+        }
+        
+        .tut_002_description_text {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .tut_002_requirements_section {
+            margin-bottom: 30px;
+        }
+        
+        .tut_002_requirements_title {
+            font-size: 30px;
+            font-family: 'Bergamasco';
+            text-transform: uppercase;
+            font-weight: 100;
+            color: #5F4545;
+            margin-bottom: 15px;
+        }
+        
+        .tut_002_requirements_table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .tut_002_requirements_table tr:nth-child(odd) {
+            background-color: #F1E8E8;
+        }
+        
+        .tut_002_requirements_table tr:nth-child(even) {
+            background-color: #EADCDC;
+        }
+        
+        .tut_002_requirements_table td {
+            padding: 5px 10px;
+            border: none;
+            color: #666666;
+            font-size: 14px;
+        }
+        
+        .tut_002_requirements_table td:first-child {
+            font-weight: 600;
+            width: 30%;
+            color: #000;
+        }
+        
+        .tut_002_location_link {
+            color: #5F4545;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .tut_002_location_link:hover {
+            text-decoration: underline;
+        }
+        
+        .tut_002_actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        /* Кнопка "Записаться" */
+        .tut_002_btn_primary {
+            background-color: #5F4545;
+            color: #F1E8E8;
+            border: none;
+            padding: 12px 25px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        /* ХОВЕР ЭФФЕКТ ДЛЯ КНОПКИ "ЗАПИСАТЬСЯ" - можно заменить */
+        .tut_002_btn_primary:hover {
+            background-color: #4a3535;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(95, 69, 69, 0.3);
+        }
+        
+        .tut_002_btn_primary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .tut_002_btn_primary:hover::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+        
+        /* Кнопка "Подробнее" */
+        .tut_002_btn_secondary {
+            background-color: transparent;
+            color: #5F4545;
+            border: 1px solid #5F4545;
+            padding: 12px 25px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        /* ХОВЕР ЭФФЕКТ ДЛЯ КНОПКИ "ПОДРОБНЕЕ" - можно заменить */
+        .tut_002_btn_secondary:hover {
+            background-color: #5F4545;
+            color: #F1E8E8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(95, 69, 69, 0.2);
+        }
+        
+
 
 .cookie-consent {
   position: fixed;
@@ -1748,3 +3328,425 @@ input[type="checkbox"] {
     gap: 20px;
     justify-content: space-between;
 }
+.b030_title_block{
+    font-size: 34px;
+    margin-bottom: 15px;
+    font-family: 'inter-semi-bold';
+    margin-top: 28px;
+}
+
+.b030_sposob_oplaty {
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    gap: 20px;
+    background: #fff;
+    border: 1px solid #D8D8D8;
+    flex-direction: column;    
+    margin-bottom: 30px;
+}
+
+.b030_oplata_box {
+    display: flex;
+    gap: 40px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.b030_wrap_oplata {
+    flex: 1;
+}
+
+.b030_form_radio_btn {
+	display: inline-block;
+	margin-right: 10px;
+}
+.b030_form_radio_btn input[type=radio] {
+	display: none;
+}
+.b030_form_radio_btn label {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	padding-left: 25px;
+	margin-right: 0;
+    margin-right: 0;
+	line-height: 18px;
+	user-select: none;
+	padding: 20px 15px 20px 40px;
+	border: 1px solid #E6EAF4;
+	border-radius: 6px;
+    width: calc(100% - 60px);
+}
+
+
+.b030_form_radio_btn label:before {
+	content: "";
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	position: absolute;
+	left: 10px;
+	background: url(src/img/rad1.svg) 0 0 no-repeat;
+}
+
+
+/* Checked */
+.b030_form_radio_btn input[type=radio]:checked + label:before {
+	background: url(src/img/rad2.png) 0 0 no-repeat;
+}
+
+
+.b030_form_radio_btn label:active{
+	border-color: #2F6BF2;
+}
+ 
+/* Hover */
+.b030_form_radio_btn label:hover:before {
+}
+ 
+/* Disabled */
+.b030_form_radio_btn input[type=radio]:disabled + label:before {
+}
+
+
+.b030_all_price{
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    gap: 20px;
+    background: #fff;
+    border: 1px solid #D8D8D8;
+    flex-direction: column;    
+}
+
+.b030_line{
+    flex: 1;
+    height: 2px;
+    background-color: #d4d4d4;
+    margin-bottom: 3px;
+}
+
+.b030_all_price_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 10px;
+}
+.b030_all_price_row_element {
+    color: #7b7b7b;
+}
+.b030_itog_pay {
+    font-size: 24px;
+    color: #1F1F1F;
+    margin-top: 10px;
+}
+
+.b030_oplata_tovar{
+    width: calc(100% - 60px);
+    border-radius: 20px;
+    padding: 30px;
+    gap: 20px;
+    background: #fff;
+    border: 1px solid #D8D8D8;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+
+}
+
+.b030_oplata_tovar_image{
+    max-width: 140px;
+    max-height: 140px;
+}
+
+.b030_oplata_tovar_image  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+.b030_oplata_tovar_card_price_box {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.b030_oplata_tovar_card_price {
+    font-size: 18px;
+    font-family: 'semibold';
+}
+
+
+.b030_oplata_tovar_card_old_price {
+    font-size: 18px;
+    font-family: 'semibold';
+    color: #9A9A9A;
+}
+
+.b030_oplata_tovar_card_old_price{
+    position: relative;
+    color: #9A9A9A;
+    }
+    
+    .b030_oplata_tovar_card_old_price::after{
+        content: '';
+              position: absolute;
+              left: 0;
+              top:0;
+              right: 0;
+              bottom: 0;
+              width: 100%;
+              height: 100%;
+              background-image: url('data:image/svg+xml;utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22100%25%22%20x2%3D%22100%25%22%20y2%3D%220%22%20stroke%3D%22%23F00%22%20stroke-width%3D%222%22%2F%3E%0A%3C%2Fsvg%3E');
+              background-size: cover;
+              margin: 0;
+
+    }
+
+.b030_oplata_tovar_name{
+    max-width: 290px;
+    font-size: 18px;
+}
+
+
+.b030_itog_pay {
+    font-size: 24px !important;
+    color: #1F1F1F !important;
+    margin-top: 10px !important;
+}
+
+.b030_btn_form{
+    background-color: #2F6BF2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    width: 100%;
+    color: #FFFFFF;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: .3s ease;
+    border-radius: 5px;
+}
+
+
+.b030_tovar_info_box_by_box_conter{
+    padding: 2px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid #2F6BF2;
+    border-radius: 5px;
+}
+
+.b030_oplata_tovar_numb_by_box_conter_quantity_btn{
+    width: 20px;
+    height: 20px;
+    line-height: 19px;
+    
+}
+.b030_oplata_tovar_numb_by_box_conter_quantity_btn{
+    width: 20px;
+    height: 20px;
+    line-height: 19px;
+
+}
+
+.b030_oplata_tovar_numb_by_box_conter_quantity_input{
+    width: 30px;
+    height: 20px;
+
+}
+
+.b030_quantity-btn{
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    text-align: center;
+    line-height: 38px;
+    transition: background-color 0.3s ease;
+
+}
+
+.b030_quantity-input{
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    cursor: default;
+}
+
+.b030_oplata_tovar_price_numb{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.b030_oplata_tovar_numb{
+    margin-top: 10px;
+}
+
+.b030_oplata_tovar_center_wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+}
+
+.b030_delite_tovar{
+    color: #979797;
+    font-size: 14px;
+    display: flex;
+    gap: 5px;
+}
+
+
+.b030_opis_radio{
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+
+.b030_form_wrapper{
+    display: flex;
+    gap: 20px;    
+}
+
+.b030_wrap_sposoby{
+    border-radius: 20px;
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #D8D8D8;
+    flex-direction: column;    
+    margin-bottom: 30px;
+}
+
+.b030_radio_parent{
+    width:168px;
+    height: 98px;
+    background: #fff;
+    border: 2px solid #3B404F;
+    padding: 5px;
+    border-radius: 20px;
+    background: #fff;
+    border: 1px solid #D8D8D8;
+    opacity: 1 !important;
+    z-index: 1 !important;
+}
+
+
+.b030_radio_parent input{
+   display: inline-block;
+   margin: 0;
+   width: 16px;
+   height: 16px;
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: contain;
+   vertical-align: baseline;
+   appearance: none;
+}
+
+
+.b030_radio_parent input:checked{
+    content: '';
+    background-image: url(/modules/card/src/img/chek.svg);
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    vertical-align: baseline;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    margin: 5px;
+    border: none;
+    opacity: 1 !important;
+}
+
+
+.b030_radio_parent:active{
+    border: 1px solid #2F6BF2;
+}
+
+.b030_radio_parent:focus{
+    border: 1px solid #2F6BF2;
+}
+
+.b030_parent_sposoby{
+    margin-bottom: 50px;
+}
+
+.b030_form_wrapper{    
+}
+
+.b030_wrap_info{
+    border-radius: 20px;
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #D8D8D8;
+    flex-direction: column;    
+    margin-bottom: 30px;
+
+}
+
+
+
+
+  .b030_no_tovar {
+    border-radius: 20px;
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #D8D8D8;
+    flex-direction: column;    
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .b030_empty_cart_notification {
+    text-align: center;
+  }
+  
+  .b030_empty_cart_notification p {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .b030_catalog_button {
+    background-color: #2F6BF2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    width: 100%;
+    color: #FFFFFF;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: .3s ease;
+    border-radius: 5px;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  
+  .b030_catalog_button:hover {
+    background-color: #1a56d9;
+  }

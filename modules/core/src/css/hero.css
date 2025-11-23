@@ -1,0 +1,179 @@
+ 
+  /* Сброс стилей и базовые настройки */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            background-color: #F1E8E8;
+        }
+
+        /* Контейнер с 12 колонками */
+        .tut_001_container {
+            width: 1160px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Главный экран */
+        .tut_001_hero {
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .tut_001_hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .tut_001_hero_content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 850px;
+            margin-bottom: 100px;
+        }
+
+        .tut_001_hero_title {
+            font-family: 'Bergamasco';
+            font-size: 120px;
+            text-transform: uppercase;
+            font-weight: 100;
+            line-height: 105%;
+        }
+
+        .tut_001_hero_description_two{
+            text-transform: uppercase;
+            font-family: 'Bergamasco';
+            font-size: 44px;
+            margin-bottom: 20px;
+            font-weight: 100;
+        }
+
+        .tut_001_hero_description {
+            font-family: 'InterRegular';
+            font-size: 16px;
+            line-height: 1.8;
+            font-weight: 100;
+            color: #A2A1A1;
+            max-width: 560px;
+        }
+
+        /* Второй блок */
+        .tut_001_second_section {
+            padding: 100px 0;
+        }
+
+        .tut_001_section_header {
+            display: flex;
+            align-items: center;
+        }
+
+        .tut_001_section_icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .tut_001_section_icon img{
+            width: 100%;
+        }
+
+        .tut_001_section_title {
+            font-family: 'Bergamasco';
+            font-size: 72px;
+            text-transform: uppercase;
+            font-weight: 100;
+            line-height: 105%;
+            color: #5F4545;
+        }
+
+        .tut_001_section_description {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 50px;
+            max-width: 500px;
+            color: #666666;
+        }
+
+        /* Плашки */
+        .tut_001_cards_container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .tut_001_card {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+
+        .tut_001_card_image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .tut_001_card_overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .tut_001_card:hover .tut_001_card_overlay {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .tut_001_card_content {
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .tut_001_card_title {
+            font-size: 32px;
+            font-family: 'Bergamasco';
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 100;
+        }
+
+        .tut_001_card_description {
+            font-size: 14px;
+        }

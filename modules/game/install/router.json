@@ -1,0 +1,4 @@
+[
+    ["/game/", "Modules\\Game\\Controller\\Index", "index"],
+    ["/game/opentest/", "Modules\\Game\\Controller\\Index", "openTest"]
+]

@@ -3,14 +3,16 @@
         "modules/core/src/css/css.css",
         "modules/core/src/css/footer.css",
         "modules/core/src/css/header.css",
-        "modules/core/src/css/index.css",
+        "modules/core/src/css/hero.css",
+        "modules/core/src/css/blocks.css",
         "modules/license/src/css.css",
         "modules/user/src/css/user.css",
         "modules/news/src/css/news.css",
         "modules/shop/src/css/brand.css",
         "modules/shop/src/css/catalog.css",
         "modules/shop/src/css/product.css",
-        "modules/shop/src/css/filter.css"
+        "modules/shop/src/css/filter.css",
+        "modules/card/src/css/card.css"
     ],
     "admin":[
         "modules/admin/src/css/admin.css",
