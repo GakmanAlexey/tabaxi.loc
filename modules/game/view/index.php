@@ -1,4 +1,4 @@
-<div class="tut_001_container scale-container">
+<div class="tut_002_container scale-container">
         <!-- Карточка партии 1 -->
         <div class="tut_002_party_card">
             <div class="tut_002_party_header">
@@ -63,14 +63,15 @@
                 </div>
                 
                 <div class="tut_002_actions">
-                    <button class="tut_002_btn_primary">Записаться</button>
+                    <a href="" class="tut_002_btn_primary">Записаться</a>
                     <a href="/game/opentest/" class="tut_002_btn_secondary">Подробнее</a>
                 </div>
             </div>
         </div>
+    </div>
         
         <!-- Карточка партии 2 -->
-       
+    <div class="tut_002_container scale-container">
         <div class="tut_002_party_card">
             <div class="tut_002_party_header">
                 <h2 class="tut_002_party_title">Приключение в Забытых Землях</h2>
@@ -139,5 +140,4 @@
                 </div>
             </div>
         </div>
-        
     </div>

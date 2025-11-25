@@ -1,6 +1,4 @@
 <div class="tut_005_container scale-container">
-        
-
         <div class="tut_005_materials_grid">
             <!-- Материал 1 -->
             <div class="tut_005_material_card">
@@ -115,9 +113,6 @@
                     </div>
                     <button class="tut_005_material_button">Открыть</button>
                 </div>
-            </div>
-
-            <!-- Материал 6 -->
-            
+            </div>            
         </div>
     </div>

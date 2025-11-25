@@ -1,4 +1,7 @@
-  
+         a{
+            text-decoration: none;
+        }
+        
          /* страница списка игр */
         .tut_002_party_card {
             margin-bottom: 40px;

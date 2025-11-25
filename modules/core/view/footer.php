@@ -1,4 +1,7 @@
 
+    
+    
+    
     <script>
         // Простой скрипт для плавного появления элементов при скролле
         document.addEventListener('DOMContentLoaded', function() {
@@ -22,128 +25,55 @@
         });
 
 
+
+    
 (function() {
-    // Конфигурация
     const config = {
-        minWidth: 400,           // Минимальная ширина экрана
-        maxWidth: 5000,          // Максимальная ширина экрана  
-        baseWidth: 1200,         // Базовая ширина контента
-        scaleCorrection: 0.94,   // Поправка масштаба
-        resizeDelay: 250,        // Задержка при ресайзе
-        scaleMode: 'transform',  // 'transform' или 'zoom'
-        
-        // Селекторы блоков для масштабирования
-        targetSelector: '.scale-container',
-        
-        // Селекторы блоков для исключения
-        excludeSelectors: [
-            '.no-scale',
-            '[data-no-scale]'
-        ]
+        minWidth: 400,
+        maxWidth: 5000,
+        baseWidth: 1200,
+        scaleCorrection: 0.94
     };
 
-    class AutoScaler {
-        constructor(config) {
-            this.config = config;
-            this.scaleRatio = 1;
-            this.init();
+    function applyAutoScale() {
+        const windowWidth = window.innerWidth;
+        let scaleRatio = 1;
+
+        if (windowWidth >= config.minWidth && windowWidth <= config.maxWidth) {
+            scaleRatio = (windowWidth / config.baseWidth) * config.scaleCorrection;
         }
 
-        init() {
-            this.applyScaling();
-            this.bindEvents();
-        }
-
-        // Получение всех блоков для масштабирования
-        getTargetBlocks() {
-            const blocks = document.querySelectorAll(this.config.targetSelector);
-            
-            return Array.from(blocks).filter(block => {
-                // Проверка на исключения
-                return !this.config.excludeSelectors.some(selector => 
-                    block.matches(selector) || block.closest(selector)
-                );
-            });
-        }
-
-        // Расчет коэффициента масштабирования
-        calculateScaleRatio() {
-            const windowWidth = window.innerWidth;
-            
-            // Если ширина вне диапазона - не масштабируем
-            if (windowWidth < this.config.minWidth || windowWidth > this.config.maxWidth) {
-                return 1;
+        // Применяем масштабирование ко всем блокам с классом scale-container
+        const blocks = document.querySelectorAll('.scale-container');
+        blocks.forEach(block => {
+            if (block.classList.contains('no-scale')) {
+                block.style.zoom = '1';
+                block.style.width = `${config.baseWidth}px`;
+                block.style.margin = '0 auto';
+            } else {
+                block.style.zoom = scaleRatio;
+                block.style.width = `${config.baseWidth}px`;
+                block.style.margin = '0 auto';
             }
+        });
 
-            // Расчет масштаба
-            return (windowWidth / this.config.baseWidth) * this.config.scaleCorrection;
-        }
-
-        // Применение масштабирования к блокам
-        applyScaling() {
-            this.scaleRatio = this.calculateScaleRatio();
-            const blocks = this.getTargetBlocks();
-
-            blocks.forEach(block => {
-                if (this.config.scaleMode === 'transform') {
-                    this.applyTransformScale(block);
-                } else {
-                    this.applyZoomScale(block);
-                }
-            });
-
-            // Сохраняем коэффициент в CSS переменной
-            document.documentElement.style.setProperty('--scale-ratio', this.scaleRatio);
-        }
-
-        // Масштабирование через transform
-        applyTransformScale(block) {
-            block.style.transform = `scale(${this.scaleRatio})`;
-            block.style.transformOrigin = 'top center';
-            block.style.width = `${this.config.baseWidth}px`;
-            block.style.margin = '0 auto';
-        }
-
-        // Масштабирование через zoom
-        applyZoomScale(block) {
-            block.style.zoom = this.scaleRatio;
-        }
-
-        // Обработка событий
-        bindEvents() {
-            let resizeTimeout;
-            
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(() => {
-                    this.applyScaling();
-                }, this.config.resizeDelay);
-            });
-
-            // Повторное масштабирование после загрузки шрифтов
-            document.fonts?.ready?.then(() => {
-                setTimeout(() => this.applyScaling(), 100);
-            });
-
-            // Масштабирование при полной загрузке DOM
-            document.addEventListener('DOMContentLoaded', () => {
-                this.applyScaling();
-            });
-        }
-
-        // Обновление конфигурации
-        updateConfig(newConfig) {
-            Object.assign(this.config, newConfig);
-            this.applyScaling();
-        }
+        document.documentElement.style.setProperty('--zoom-factor', scaleRatio);
     }
 
     // Инициализация
-    window.autoScaler = new AutoScaler(config);
+    applyAutoScale();
+    
+    // Обработчики событий
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(applyAutoScale, 250);
+    });
+
+    document.addEventListener('DOMContentLoaded', applyAutoScale);
+    window.addEventListener('load', () => setTimeout(applyAutoScale, 100));
     
 })();
-
-
 
 
 
@@ -229,3 +159,13 @@
             }
         });
     </script>
+
+    <div class="tut_009_container scale-container">
+        <div class="tut_009_footer">
+            <div class="tut_009_logo">
+                    <div class="tut_009_logo_icon">ТУТ</div>
+                    <div class="tut_009_logo_text">Таверна у Табакси</div>
+                </div>
+            <a href="">лицензионное соглашение</a>
+        </div>
+    </div>

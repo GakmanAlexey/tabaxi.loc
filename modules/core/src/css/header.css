@@ -355,6 +355,7 @@
             position: relative;
             overflow: hidden;
             border-radius: 8px;
+            text-align: center;
         }
         
         /* ХОВЕР ЭФФЕКТ ДЛЯ КНОПКИ "ЗАПИСАТЬСЯ" - можно заменить */
@@ -402,7 +403,8 @@
             font-size: 14px;
             cursor: pointer;
             transition: all 0.3s ease;
-            border-radius: 8px;
+            border-radius: 8px;            
+            text-align: center;
         }
         
         /* ХОВЕР ЭФФЕКТ ДЛЯ КНОПКИ "ПОДРОБНЕЕ" - можно заменить */
@@ -626,24 +628,30 @@
             margin-bottom: 20px;
         }
         
+
+        
         .tut_003_join_btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             background: #5F4545;
             color: #F1E8E8;
             border: none;
-            padding: 15px 30px;
+            padding: 15px 20px;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 14px;
             cursor: pointer;
             transition: all 0.3s ease;
-            width: 100%;
+            text-decoration: none;
         }
         
-        /* ХОВЕР ЭФФЕКТ ДЛЯ КНОПКИ ЗАПИСИ - можно заменить */
+        /* ХОВЕР ЭФФЕКТ ДЛЯ КНОПКИ СКАЧИВАНИЯ - можно заменить */
         .tut_003_join_btn:hover {
             background: #4a3535;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(95, 69, 69, 0.3);
         }
+        
         
         /* Блок участников */
         .tut_003_participants {
@@ -778,27 +786,19 @@
 
 
 
+.scale-container {
+    width: 1200px;
+    margin: 0 auto;
+    transform-origin: 0 0;
+}
 
-        
-    /* Базовые стили для масштабируемых контейнеров */
-    .scale-container {
-        width: 1200px;
-        margin: 0 auto;
-        position: relative;
-    }
+[style*="zoom"] {
+    transform-origin: 0 0;
+}
 
-    /* Отключение масштабирования для определенных элементов */
-    .no-scale,
-    [data-no-scale] {
-        transform: none !important;
-        zoom: 1 !important;
-    }
-
-    /* CSS переменная для использования в других стилях */
-    :root {
-        --scale-ratio: 1;
-    }
-
+.no-scale {
+    zoom: 1 !important;
+}
 
         /* Адаптивность для мобильных устройств */
         @media (max-width: 1024px) {
@@ -1009,8 +1009,8 @@
         /* Стили навигации */
         .tut_nav_004_container {
             position: fixed;
-            bottom: 60px;
-            right: 360px;
+            bottom: 20px;
+            right: 40px;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 50px;
@@ -1020,6 +1020,7 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1000;
             width: auto;
+            height: auto !important;
             overflow: hidden;
         }
 
@@ -1162,7 +1163,7 @@
         .tut_nav_004_container.collapsed {
             width: 52px !important;
             padding: 5px 5px;
-            right: 60px;
+            right: 40px;
         }
 
         .tut_nav_004_container.collapsed .tut_nav_004_menu,

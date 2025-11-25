@@ -1,31 +1,45 @@
+ .tut_009_logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
 
-.b001_footer {
-    background: #111111;
-    width: 100%;
-    padding: 40px 0 10px 0;
-    margin-top: 100px;
-}
+        .tut_009_logo_icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #e6d8d8, #cca6a6);
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5F4545;
+            font-weight: bold;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
 
-.b001_footer_box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+        .tut_009_logo_text {
+            font-size: 14px;
+            font-weight: 700;
+            color: #e6d8d8;
+            white-space: nowrap;
+            transition: opacity 0.3s ease;
+        }
 
-}
+    .tut_009_footer{
+        background: #000000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+            border-radius: 20px;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+    }
 
-.b001_footer_logo_box {
-}
-
-.b001_footer_link_box {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.b001_footer_link_item {
-    width: 230px;
-    color: #A1A1A1;
-    font-size: 14px;
-    text-decoration: none;
-}
+    a{
+        color: #9e7b7b;
+        font-size: 14px;
+    }

@@ -1,6 +1,6 @@
 <!-- Второй блок -->
-    <section class="tut_001_second_section">
-        <div class="tut_001_container scale-container">
+    <div class="tut_001_container scale-container">
+        <section class="tut_001_second_section">
             <div class="tut_001_section_header">
                 <div class="tut_001_section_icon appearance-effect">
                     <img src="/modules/core/src/img/Star.svg" alt="">
@@ -46,5 +46,5 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>    
+    </div>

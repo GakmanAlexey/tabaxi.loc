@@ -1,5 +1,14 @@
-
+         a{
+            text-decoration: none;
+        }
+        
        /* Стили хлебных крошек */
+        .tut_007_container{            
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0px 20px 20px 20px;
+        }
+
         .tut_breadcrumbs_007 {
             display: flex;
             align-items: center;

@@ -1,4 +1,8 @@
- .tut_006_container {
+         a{
+            text-decoration: none;
+        }
+
+        .tut_006_container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
