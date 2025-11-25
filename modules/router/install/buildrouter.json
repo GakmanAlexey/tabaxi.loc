@@ -1,10 +1,10 @@
 {
-    "generated_at": "2025-11-25 04:52:56",
+    "generated_at": "2025-11-25 18:31:37",
     "sources": {
         "json_routes": 0,
         "sql_routes": 0
     },
-    "routes_count": 103,
+    "routes_count": 105,
     "routes": [
         {
             "path": "/admin/",
@@ -623,6 +623,18 @@
             "class": "Modules\\User\\Controller\\Adminajax",
             "method": "ban",
             "module": "user"
+        },
+        {
+            "path": "/materials/upravleniye-gorodami/v1/",
+            "class": "\\Modules\\Materials\\Controller\\Index",
+            "method": "openMaterial",
+            "source": "SQL (fallback)"
+        },
+        {
+            "path": "/materials/upravleniye-gorodami/v2/",
+            "class": "\\Modules\\Materials\\Controller\\Index",
+            "method": "openMaterial",
+            "source": "SQL (fallback)"
         }
     ]
 }
