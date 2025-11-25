@@ -1,6 +1,6 @@
 {
-    "generated_at": "2025-11-23 20:59:14",
-    "routes_count": 100,
+    "generated_at": "2025-11-25 04:52:56",
+    "routes_count": 103,
     "routes": [
         {
             "path": "/admin/",
@@ -277,6 +277,24 @@
             "class": "Modules\\License\\Controller\\Index",
             "method": "index",
             "module": "license"
+        },
+        {
+            "path": "/materials/",
+            "class": "Modules\\Materials\\Controller\\Index",
+            "method": "index",
+            "module": "materials"
+        },
+        {
+            "path": "/materials/opentest/",
+            "class": "Modules\\Materials\\Controller\\Index",
+            "method": "openTest",
+            "module": "materials"
+        },
+        {
+            "path": "/materials/opentest2/",
+            "class": "Modules\\Materials\\Controller\\Index",
+            "method": "openTest2",
+            "module": "materials"
         },
         {
             "path": "/news/",

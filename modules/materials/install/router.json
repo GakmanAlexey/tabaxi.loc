@@ -1,0 +1,5 @@
+[
+    ["/materials/", "Modules\\Materials\\Controller\\Index", "index"],
+    ["/materials/opentest/", "Modules\\Materials\\Controller\\Index", "openTest"],
+    ["/materials/opentest2/", "Modules\\Materials\\Controller\\Index", "openTest2"]
+]

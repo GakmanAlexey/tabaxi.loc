@@ -1,0 +1,382 @@
+
+       .tut_008_container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Плашки требований */
+        .tut_008_requirements {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tut_008_requirement_badge {
+            background: #F1E8E8;
+            color: #5F4545;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            border: 2px solid #EADCDC;
+        }
+
+        /* Ингредиенты в виде табов */
+        .tut_008_ingredients {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tut_008_ingredient_tab {
+            background: #F1E8E8;
+            color: #5F4545;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tut_008_ingredient_tab:hover {
+            background: #EADCDC;
+            transform: translateY(-2px);
+        }
+        
+        .tut_008_using_item{
+            background: #5F4545;
+            color: #F1E8E8;
+        }
+
+        .tut_008_using_item:hover{
+            background: #4a3535;
+            color: #F1E8E8;
+        }
+
+
+        /* Список предметов использования */
+        .tut_008_usage_list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .tut_008_usage_item {
+            background: #F5EEEE;
+            padding: 18px 25px;
+            border-radius: 12px;
+            border-left: 4px solid #5F4545;
+            font-size: 17px;
+            font-weight: 600;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .tut_008_usage_item:hover {
+            background: #F1E8E8;
+            transform: translateX(5px);
+
+        }
+       
+
+        /* Основной контент */
+        .tut_008_hero {
+            display: flex;
+            gap: 60px;
+            margin-bottom: 60px;
+            align-items: flex-start;
+        }
+
+        .tut_008_item_image {
+            width: 400px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            flex-shrink: 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .tut_008_item_content {
+            flex: 1;
+        }
+
+        .tut_008_item_title {
+            font-size: 2.5rem;
+            font-family: 'Bergamasco';
+            text-transform: uppercase;
+            font-weight: 100;
+            color: #5F4545;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .tut_008_item_rarity {
+            display: inline-block;
+            padding: 6px 16px;
+            background: #5F4545;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .tut_008_item_description {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .tut_008_item_description p {
+            margin-bottom: 15px;
+        }
+
+        /* Секции с таблицами */
+        .tut_008_section {
+            background: #F5EEEE;
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 40px;
+            border: 1px solid #F8F4F4;
+
+        }
+
+        .tut_008_section_title {
+            font-size: 1.8rem;
+            font-family: 'Bergamasco';
+            text-transform: uppercase;
+            font-weight: 100;
+            color: #5F4545;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #EADCDC;
+        }
+
+        /* Общие стили таблиц */
+        .tut_008_table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .tut_008_table tr:nth-child(odd) {
+            background-color: #F5EEEE;
+        }
+        
+        .tut_008_table tr:nth-child(even) {
+            background-color: #F1E8E8;
+        }
+        
+        .tut_008_table td {
+            padding: 15px 20px;
+            border: none;
+            color: #666666;
+            font-size: 14px;
+            vertical-align: top;
+        }
+        
+        .tut_008_table th {
+            color: #5F4545;
+            padding: 18px 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .tut_008_table td:first-child {
+            font-weight: 600;
+            width: 25%;
+            color: #000;
+        }
+
+        /* Особый стиль для текущего предмета в таблице использования */
+        .tut_008_current_item {
+            background: rgba(95, 69, 69, 0.15) !important;
+            border-left: 4px solid #5F4545;
+            font-weight: 600;
+        }
+
+        .tut_008_current_item td:first-child {
+            color: #5F4545;
+        }
+
+         /* Кастомный скроллбар для таблиц */
+    .tut_008_table::-webkit-scrollbar,
+    .tut_008_table::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .tut_008_table::-webkit-scrollbar-track,
+    .tut_008_table::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 3px;
+    }
+    
+    .tut_008_table::-webkit-scrollbar-thumb,
+    .tut_008_table::-webkit-scrollbar-thumb {
+        background: #5F4545;
+        border-radius: 3px;
+    }
+    
+    .tut_008_table::-webkit-scrollbar-thumb:hover,
+    .tut_008_table::-webkit-scrollbar-thumb:hover {
+        background: #4a3535;
+    }
+    
+
+
+        /* Базовые стили для масштабируемых контейнеров */
+    .scale-container {
+        width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .tut_008_hero {
+                gap: 40px;
+            }
+            
+            .tut_008_item_image {
+                width: 350px;
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tut_008_hero {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .tut_008_item_image {
+                width: 100%;
+                max-width: 400px;
+                height: 300px;
+                margin: 0 auto;
+            }
+            
+            .tut_008_item_title {
+                font-size: 2rem;
+            }
+            
+            .tut_008_section {
+                padding: 25px;
+            }
+
+            /* Горизонтальный скролл для таблиц */
+            .tut_008_table {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                white-space: nowrap;
+            }
+            
+            .tut_008_table {
+            }
+            
+            .tut_008_table tr {
+                display: table-row;
+                width: 100%;
+            }
+            
+            .tut_008_table td,
+            .tut_008_table th {
+                display: table-cell;
+                white-space: nowrap;
+            }
+
+            
+            .tut_008_section {
+                padding: 25px;
+            }
+            
+            .tut_008_section_title {
+                font-size: 24px;
+            }
+            
+            .tut_008_requirements {
+                gap: 10px;
+            }
+            
+            .tut_008_requirement_badge {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+            
+            .tut_008_ingredients {
+                gap: 8px;
+            }
+            
+            .tut_008_ingredient_tab {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            
+            .tut_008_usage_item {
+                padding: 15px 20px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tut_008_container {
+                padding: 20px 15px;
+            }
+            
+            .tut_008_item_title {
+                font-size: 1.8rem;
+            }
+            
+            .tut_008_section {
+                padding: 20px;
+            }
+            
+            .tut_008_table {
+                width: 100%;
+                max-width: 100vw;
+            }
+            
+            .tut_008_table td,
+            .tut_008_table th {
+                padding: 12px 15px;
+                font-size: 13px;
+            }
+
+            
+            .tut_008_container {
+                padding: 20px 15px;
+            }
+            
+            .tut_008_section {
+                padding: 20px;
+                overflow-x: hidden;
+                max-width: 100vw;
+            }
+            
+            .tut_008_section_title {
+                font-size: 22px;
+            }
+            
+            .tut_008_requirement_badge {
+                font-size: 13px;
+                padding: 8px 14px;
+            }
+            
+            .tut_008_ingredient_tab {
+                font-size: 13px;
+                padding: 7px 14px;
+            }
+
+            .scale-container{
+                width: 100% !important;
+            }
+        }

@@ -1,0 +1,72 @@
+
+       /* Стили хлебных крошек */
+        .tut_breadcrumbs_007 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 20px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .tut_breadcrumbs_007_item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tut_breadcrumbs_007_link {
+            color: #5F4545;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tut_breadcrumbs_007_link:hover {
+            background: rgba(95, 69, 69, 0.1);
+            color: #4a3535;
+        }
+
+        .tut_breadcrumbs_007_separator {
+            color: #EADCDC;
+            font-weight: 300;
+        }
+
+        .tut_breadcrumbs_007_current {
+            color: #333;
+            font-weight: 600;
+            padding: 6px 12px;
+            background: #F1E8E8;
+            border-radius: 6px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .tut_breadcrumbs_007 {
+                flex-wrap: wrap;
+                gap: 4px;
+                padding: 15px 0;
+            }
+            
+            .tut_breadcrumbs_007_item {
+                gap: 4px;
+            }
+            
+            .tut_breadcrumbs_007_link,
+            .tut_breadcrumbs_007_current {
+                padding: 4px 8px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tut_breadcrumbs_007 {
+                font-size: 12px;
+            }
+            
+            .tut_breadcrumbs_007_mobile_hidden {
+                display: none;
+            }
+        }

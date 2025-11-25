@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylematerialin.css">
+    <link rel="stylesheet" href="stylebreadcrumbs.css">
+    <title>TUT_001 Website</title>
+</head>
+<body>
+     <div class="tut_006_container scale-container">
+        <nav class="tut_breadcrumbs_007">
+            <div class="tut_breadcrumbs_007_item">
+                <a href="#" class="tut_breadcrumbs_007_link">Главная</a>
+                <span class="tut_breadcrumbs_007_separator">/</span>
+            </div>
+            <div class="tut_breadcrumbs_007_item">
+                <a href="#" class="tut_breadcrumbs_007_link">Справочные материалы</a>
+                <span class="tut_breadcrumbs_007_separator">/</span>
+            </div>
+            <div class="tut_breadcrumbs_007_item">
+                <a href="#" class="tut_breadcrumbs_007_link tut_breadcrumbs_007_mobile_hidden">Руководства для игроков</a>
+                <span class="tut_breadcrumbs_007_separator tut_breadcrumbs_007_mobile_hidden">/</span>
+            </div>
+            <div class="tut_breadcrumbs_007_item">
+                <span class="tut_breadcrumbs_007_current">Основное руководство игрока</span>
+            </div>
+        </nav>
+        <!-- Первый экран -->
+        <section class="tut_006_hero">
+            <img src="img/bg1.png" 
+                 alt="Основное руководство игрока" class="tut_006_hero_image">
+            
+            <div class="tut_006_hero_content">
+                <h1 class="tut_006_hero_title">Основное руководство игрока</h1>
+                <div class="tut_006_hero_description">
+                    <p>Полное руководство по созданию персонажей, механикам игры и основам системы D&D 5E. Это исчерпывающий ресурс для всех, кто хочет погрузиться в мир настольных ролевых игр.</p>
+                    <p>В руководстве подробно рассматриваются все аспекты игры: от базовых механик бросков кубов до сложных систем заклинаний и взаимодействия с игровым миром.</p>
+                    
+                </div>
+                
+                <div class="tut_006_hero_actions">
+                    <button class="tut_006_btn tut_006_btn_primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 9H15V3H9V9H5L12 16L19 9ZM5 18V20H19V18H5Z"/>
+                        </svg>
+                        Скачать материал
+                    </button>
+                    <a href="#content" class="tut_006_btn tut_006_btn_secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        Смотреть онлайн
+                    </a>
+                </div>
+            </div>
+            
+            <div class="tut_006_sidebar">
+                <table class="tut_006_requirements_table">
+                    <tr>
+                        <td>Автор</td>
+                        <td>Александр Волков</td>
+                    </tr>
+                    <tr>
+                        <td>Соавторы</td>
+                        <td>Мария Смирнова<br>Дмитрий Петров<br>Анна Козлова</td>
+                    </tr>
+                    <tr>
+                        <td>Дата выпуска</td>
+                        <td>15.01.2025</td>
+                    </tr>
+                    <tr>
+                        <td>Версия</td>
+                        <td>2.1.4</td>
+                    </tr>
+                    <tr>
+                        <td>Язык</td>
+                        <td>Русский</td>
+                    </tr>
+                    <tr>
+                        <td>Формат</td>
+                        <td>PDF, EPUB</td>
+                    </tr>
+                    <tr>
+                        <td>Размер</td>
+                        <td>48.7 МБ</td>
+                    </tr>
+                    <tr>
+                        <td>Страниц</td>
+                        <td>214</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Содержание -->
+        <section class="tut_006_toc">
+            <h2 class="tut_006_toc_title">Содержание</h2>
+            <ul class="tut_006_toc_list">
+                <li class="tut_006_toc_item"><a href="#intro" class="tut_006_toc_link">Введение в D&D</a></li>
+                <li class="tut_006_toc_item"><a href="#character-creation" class="tut_006_toc_link">Создание персонажа</a></li>
+                <li class="tut_006_toc_item"><a href="#races" class="tut_006_toc_link">Расы и народы</a></li>
+                <li class="tut_006_toc_item"><a href="#classes" class="tut_006_toc_link">Классы персонажей</a></li>
+                <li class="tut_006_toc_item"><a href="#equipment" class="tut_006_toc_link">Снаряжение и экипировка</a></li>
+                <li class="tut_006_toc_item"><a href="#combat" class="tut_006_toc_link">Боевая система</a></li>
+                <li class="tut_006_toc_item"><a href="#magic" class="tut_006_toc_link">Магия и заклинания</a></li>
+                <li class="tut_006_toc_item"><a href="#adventuring" class="tut_006_toc_link">Приключения и исследования</a></li>
+            </ul>
+        </section>
+
+        <!-- Основной контент -->
+        <div class="tut_006_content" id="content">
+            <!-- Раздел 1 -->
+            <section class="tut_006_section" id="intro">
+                <h2 class="tut_006_section_title">Введение в D&D</h2>
+                <p class="tut_006_text">Dungeons & Dragons (D&D) — это настольная ролевая игра, в которой игроки создают персонажей и отправляются в эпические приключения под руководством Мастера игры.</p>
+                
+                <h3 class="tut_006_section_subtitle">Основные концепции</h3>
+                <p class="tut_006_text">Игра сочетает в себе элементы сторителлинга, тактического мышления и случайности, определяемой бросками игральных костей.</p>
+                
+                <table class="tut_006_vertical_table tut_006_vertical_table_w70">
+                    <tr>
+                        <th>Термин</th>
+                        <th>Описание</th>
+                    </tr>
+                    <tr>
+                        <td>Мастер игры (DM)</td>
+                        <td>Ведущий, который описывает мир, управляет NPC и создает приключения</td>
+                    </tr>
+                    <tr>
+                        <td>Игровые кости</td>
+                        <td>Набор специальных костей (d4, d6, d8, d10, d12, d20) для определения случайных событий</td>
+                    </tr>
+                    <tr>
+                        <td>Проверка характеристики</td>
+                        <td>Бросок d20 для определения успеха действия персонажа</td>
+                    </tr>
+                    <tr>
+                        <td>Класс брони (КБ)</td>
+                        <td>Показатель, определяющий сложность попадания по персонажу</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- Раздел 2 -->
+            <section class="tut_006_section" id="character-creation">
+                <h2 class="tut_006_section_title">Создание персонажа</h2>
+                <p class="tut_006_text">Создание персонажа — это процесс определения его способностей, внешности, предыстории и мотиваций.</p>
+                
+                <h3 class="tut_006_section_subtitle">Шаги создания</h3>
+                <p class="tut_006_text">Процесс состоит из нескольких ключевых этапов, каждый из которых важен для создания уникального персонажа.</p>
+                
+                <table class="tut_006_vertical_table">
+                    <tr>
+                        <th>Этап</th>
+                        <th>Описание</th>
+                        <th>Рекомендации</th>
+                    </tr>
+                    <tr>
+                        <td>1. Выбор расы</td>
+                        <td>Определяет базовые способности и особенности персонажа</td>
+                        <td>Выбирайте расу, которая соответствует вашей игровой концепции</td>
+                    </tr>
+                    <tr>
+                        <td>2. Выбор класса</td>
+                        <td>Определяет основные умения и роль в группе</td>
+                        <td>Учитывайте синергию с выбранной расой</td>
+                    </tr>
+                    <tr>
+                        <td>3. Распределение характеристик</td>
+                        <td>Назначение значений Силы, Ловкости, Телосложения и др.</td>
+                        <td>Приоритетные характеристики зависят от класса</td>
+                    </tr>
+                    <tr>
+                        <td>4. Снаряжение</td>
+                        <td>Выбор оружия, доспехов и полезных предметов</td>
+                        <td>Начинайте со стартового снаряжения класса</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- Раздел 3 -->
+            <section class="tut_006_section" id="races">
+                <h2 class="tut_006_section_title">Расы и народы</h2>
+                <p class="tut_006_text">Мир D&D населен разнообразными расами, каждая со своими уникальными способностями и культурными особенностями.</p>
+                
+                <h3 class="tut_006_section_subtitle">Основные расы</h3>
+                <p class="tut_006_text">Выбор расы влияет на бонусы к характеристикам, размер, скорость и специальные способности персонажа.</p>
+                
+                <table class="tut_006_vertical_table">
+                    <tr>
+                        <th>Раса</th>
+                        <th>Бонусы к характеристикам</th>
+                        <th>Особенности</th>
+                        <th>Размер</th>
+                    </tr>
+                    <tr>
+                        <td>Человек</td>
+                        <td>+1 ко всем характеристикам</td>
+                        <td>Универсальность, дополнительный навык</td>
+                        <td>Средний</td>
+                    </tr>
+                    <tr>
+                        <td>Эльф</td>
+                        <td>+2 Ловкость</td>
+                        <td>Темное зрение, иммунитет к магии сна</td>
+                        <td>Средний</td>
+                    </tr>
+                    <tr>
+                        <td>Дварф</td>
+                        <td>+2 Телосложение</td>
+                        <td>Сопротивление яду, темное зрение</td>
+                        <td>Средний</td>
+                    </tr>
+                    <tr>
+                        <td>Халфлинг</td>
+                        <td>+2 Ловкость</td>
+                        <td>Удача, смелость, проворство</td>
+                        <td>Маленький</td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+    </div>
+  
+
+    <script>
+        // Простой скрипт для плавного появления элементов при скролле
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.appearance-effect');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+
+
+(function() {
+    // Конфигурация
+    const config = {
+        minWidth: 400,           // Минимальная ширина экрана
+        maxWidth: 5000,          // Максимальная ширина экрана  
+        baseWidth: 1200,         // Базовая ширина контента
+        scaleCorrection: 0.94,   // Поправка масштаба
+        resizeDelay: 250,        // Задержка при ресайзе
+        scaleMode: 'transform',  // 'transform' или 'zoom'
+        
+        // Селекторы блоков для масштабирования
+        targetSelector: '.scale-container',
+        
+        // Селекторы блоков для исключения
+        excludeSelectors: [
+            '.no-scale',
+            '[data-no-scale]'
+        ]
+    };
+
+    class AutoScaler {
+        constructor(config) {
+            this.config = config;
+            this.scaleRatio = 1;
+            this.init();
+        }
+
+        init() {
+            this.applyScaling();
+            this.bindEvents();
+        }
+
+        // Получение всех блоков для масштабирования
+        getTargetBlocks() {
+            const blocks = document.querySelectorAll(this.config.targetSelector);
+            
+            return Array.from(blocks).filter(block => {
+                // Проверка на исключения
+                return !this.config.excludeSelectors.some(selector => 
+                    block.matches(selector) || block.closest(selector)
+                );
+            });
+        }
+
+        // Расчет коэффициента масштабирования
+        calculateScaleRatio() {
+            const windowWidth = window.innerWidth;
+            
+            // Если ширина вне диапазона - не масштабируем
+            if (windowWidth < this.config.minWidth || windowWidth > this.config.maxWidth) {
+                return 1;
+            }
+
+            // Расчет масштаба
+            return (windowWidth / this.config.baseWidth) * this.config.scaleCorrection;
+        }
+
+        // Применение масштабирования к блокам
+        applyScaling() {
+            this.scaleRatio = this.calculateScaleRatio();
+            const blocks = this.getTargetBlocks();
+
+            blocks.forEach(block => {
+                if (this.config.scaleMode === 'transform') {
+                    this.applyTransformScale(block);
+                } else {
+                    this.applyZoomScale(block);
+                }
+            });
+
+            // Сохраняем коэффициент в CSS переменной
+            document.documentElement.style.setProperty('--scale-ratio', this.scaleRatio);
+        }
+
+        // Масштабирование через transform
+        applyTransformScale(block) {
+            block.style.transform = `scale(${this.scaleRatio})`;
+            block.style.transformOrigin = 'top center';
+            block.style.width = `${this.config.baseWidth}px`;
+            block.style.margin = '0 auto';
+        }
+
+        // Масштабирование через zoom
+        applyZoomScale(block) {
+            block.style.zoom = this.scaleRatio;
+        }
+
+        // Обработка событий
+        bindEvents() {
+            let resizeTimeout;
+            
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    this.applyScaling();
+                }, this.config.resizeDelay);
+            });
+
+            // Повторное масштабирование после загрузки шрифтов
+            document.fonts?.ready?.then(() => {
+                setTimeout(() => this.applyScaling(), 100);
+            });
+
+            // Масштабирование при полной загрузке DOM
+            document.addEventListener('DOMContentLoaded', () => {
+                this.applyScaling();
+            });
+        }
+
+        // Обновление конфигурации
+        updateConfig(newConfig) {
+            Object.assign(this.config, newConfig);
+            this.applyScaling();
+        }
+    }
+
+    // Инициализация
+    window.autoScaler = new AutoScaler(config);
+    
+})();
+
+
+
+
+
+
+
+        const nav = document.getElementById('tutNav');
+        let isCollapsed = false;
+        let scrollTimeout;
+        let userManuallyOpened = false; // Флаг ручного открытия
+
+        // Проверяем мобильное устройство
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
+        // Обработчик прокрутки для автоматического сворачивания (только для десктопа)
+        window.addEventListener('scroll', function() {
+            if (!isMobile() && !isCollapsed && !userManuallyOpened) {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    collapseNav();
+                }, 500);
+            }
+        });
+
+        // Функция сворачивания
+        function collapseNav() {
+            if (!isMobile()) {
+                nav.classList.add('collapsed');
+                isCollapsed = true;
+            }
+        }
+
+        // Функция разворачивания
+        function expandNav() {
+            if (!isMobile()) {
+                nav.classList.remove('collapsed');
+                isCollapsed = false;
+                userManuallyOpened = true; // Пользователь сам открыл - больше не сворачиваем
+            }
+        }
+
+        // Функция переключения состояния навигации
+        function toggleNav() {
+            if (!isMobile()) {
+                if (isCollapsed) {
+                    expandNav();
+                } else {
+                    collapseNav();
+                }
+                
+                // Сбрасываем таймер при ручном управлении
+                clearTimeout(scrollTimeout);
+            }
+        }
+
+        // Обработчик изменения размера окна
+        window.addEventListener('resize', function() {
+            if (isMobile()) {
+                // На мобилке всегда развернутое состояние
+                nav.classList.remove('collapsed');
+                isCollapsed = false;
+                userManuallyOpened = false;
+            } else {
+                // При переходе на десктоп сбрасываем флаг ручного открытия
+                userManuallyOpened = false;
+            }
+        });
+
+        // Инициализация при загрузке
+        if (isMobile()) {
+            nav.classList.remove('collapsed');
+            isCollapsed = false;
+            userManuallyOpened = false;
+        }
+
+        // Автоматическое сворачивание при первой загрузке (только для десктопа)
+        window.addEventListener('load', function() {
+            if (!isMobile()) {
+                setTimeout(() => {
+                    collapseNav();
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
