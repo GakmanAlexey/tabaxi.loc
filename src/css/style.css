@@ -2190,12 +2190,11 @@
 
         /* Основной контент */
         .tut_006_content {
-            margin: 60px 0;
         }
 
         .tut_006_section {
-            margin-bottom: 50px;
-            scroll-margin-top: 20px;
+            margin-bottom: 10px;
+            scroll-margin-top: 30px;
             width: 100%;
         }
 

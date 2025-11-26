@@ -3,7 +3,8 @@
 namespace Modules\Materials\Modul;
 
 class Materialopendata extends \Modules\Materials\Modul\Material{
-    
+    private $textPageLink = "";
+    private $textPageData = "";
     public function fillFromParent($parentData): self
     {
         if (is_array($parentData)) {
@@ -63,5 +64,26 @@ class Materialopendata extends \Modules\Materials\Modul\Material{
     public static function fromMaterialObject(\Modules\Materials\Modul\Material $material): \Modules\Materials\Modul\Material
     {
         return self::createFromParent($material);
+    }
+
+    
+    public function getTextPageLink()
+    {
+        return $this->textPageLink;
+    }    
+    public function setTextPageLink($textPageLink): self
+    {
+        $this->textPageLink = $textPageLink;
+        return $this;
+    }
+    
+    public function gettextPageData()
+    {
+        return $this->textPageData;
+    }    
+    public function settextPageData($textPageData): self
+    {
+        $this->textPageData = $textPageData;
+        return $this;
     }
 }

@@ -6,15 +6,16 @@ class Materialopen{
 
     public function start()
     {
-       $focusMaterial = $this->findByUrl(\Modules\Router\Modul\Router::$url["d_line"]);
-       if($focusMaterial == null){        
+        $focusMaterial = $this->findByUrl(\Modules\Router\Modul\Router::$url["d_line"]);
+        if($focusMaterial == null){        
             \Modules\Router\Modul\Errorhandler::e404(); 
             die();
-       }
-       $materialOpenData = new \Modules\Materials\Modul\Materialopendata;
-       $materialOpenData->fillFromParent($focusMaterial);
-
-       return $materialOpenData;
+        }
+        $materialOpenData = new \Modules\Materials\Modul\Materialopendata;
+        $materialOpenData->fillFromParent($focusMaterial);
+        $materialOpenData = $this->takePageLink( $materialOpenData);
+        $materialOpenData = $this->takePageLinkBuild( $materialOpenData);
+        return $materialOpenData;
     }    
 
     public function findByUrl($url)
@@ -36,4 +37,87 @@ class Materialopen{
         
         return \Modules\Materials\Modul\Material::fromArrayBase($data);
     }
+
+    public function takePageLink(\Modules\Materials\Modul\Materialopendata $materialOpenData)
+    {
+        $arrayLinkMaterial = [];
+        $material = $materialOpenData->getId();
+        $pdo = \Modules\Core\Modul\Sql::connect();
+        $sql = "SELECT * FROM ".\Modules\Core\Modul\Env::get("DB_PREFIX")."materials_link WHERE materialID = :materialID ";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':materialID' => $material]);
+        while($data = $stmt->fetch(\PDO::FETCH_ASSOC)){
+            $arrayLinkMaterial[] =[$data["typeBlock"],$data["idBlock"],$data["priorVAL"]];
+        }
+        
+        usort($arrayLinkMaterial, function($a, $b) {
+            return (int)$a[2] - (int)$b[2];
+        });
+        $materialOpenData->setTextPageLink($arrayLinkMaterial);
+        return $materialOpenData;
+    }
+
+    public function takePageLinkBuild(\Modules\Materials\Modul\Materialopendata $materialOpenData)
+    {
+        $arrDataPageLink = $materialOpenData->getTextPageLink();
+        $arrayData = [];
+        foreach($arrDataPageLink as $pageLink){
+            $data = "";
+             switch($pageLink[0]) {
+                case 'h':
+                    $pageLink[3]  = $this->takeHead($pageLink); // функция для 'h'
+                    break;
+                case 't':
+                    $pageLink[3]  = $this->takeText($pageLink); // функция для 't'
+                    break;
+                case 'p':
+                    $pageLink[3]  = $this->takeParagraph($pageLink); // функция для 'p'
+                    break;
+                default:
+                    $pageLink[3]  = $this->takeOther($pageLink); // функция по умолчанию
+                    break;
+            }
+            $arrayData [] = $pageLink;
+        }
+        $materialOpenData->settextPageData($arrayData);
+        return $materialOpenData;
+    }
+
+    public function takeHead($pageLink)
+    {        
+        $pdo = \Modules\Core\Modul\Sql::connect();
+        $sql = "SELECT * FROM ".\Modules\Core\Modul\Env::get("DB_PREFIX")."materials_heads WHERE id = :id Limit 1";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':id' => $pageLink[1]]);
+        $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public function takeText($pageLink)
+    {
+        $pdo = \Modules\Core\Modul\Sql::connect();
+        $sql = "SELECT * FROM ".\Modules\Core\Modul\Env::get("DB_PREFIX")."materials_tablet WHERE id = :id Limit 1";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':id' => $pageLink[1]]);
+        $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $data;
+        
+    }
+
+    public function takeParagraph($pageLink)
+    {
+        $pdo = \Modules\Core\Modul\Sql::connect();
+        $sql = "SELECT * FROM ".\Modules\Core\Modul\Env::get("DB_PREFIX")."materials_paragraph WHERE id = :id Limit 1";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':id' => $pageLink[1]]);
+        $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $data;
+        
+    }
+
+    public function takeOther($pageLink)
+    {
+        return [];
+    }
+    
 }

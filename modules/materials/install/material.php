@@ -22,6 +22,61 @@ class Material  extends \Modules\Abs\Install{
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )
         ';
+
+        $table[] = '
+        CREATE TABLE '.\Modules\Core\Modul\Env::get("DB_PREFIX").'materials_heads (
+            id INT(12) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            typeH VARCHAR(255) NULL,
+            textH TEXT NULL,
+            idH TEXT NULL,
+            classH TEXT NULL,
+            styleCSSH TEXT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        )
+        ';
+
+        $table[] = '
+        CREATE TABLE '.\Modules\Core\Modul\Env::get("DB_PREFIX").'materials_paragraph (
+            id INT(12) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            typeP VARCHAR(255) NULL,
+            textP TEXT NULL,
+            idP TEXT NULL,
+            classP TEXT NULL,
+            styleCSSP TEXT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        )
+        ';
+
+        $table[] = '
+        CREATE TABLE '.\Modules\Core\Modul\Env::get("DB_PREFIX").'materials_tablet (
+            id INT(12) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            headClass TEXT NULL,
+            headstyleCSSP TEXT NULL,
+            headArray TEXT NULL,
+            bodyClass TEXT  NULL,
+            bodystyleCSSP TEXT NULL,
+            bodyArray TEXT NULL,
+            idP TEXT NULL,
+            classP TEXT NULL,
+            styleCSSP TEXT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        )
+        ';
+
+        $table[] = '
+        CREATE TABLE '.\Modules\Core\Modul\Env::get("DB_PREFIX").'materials_link (
+            id INT(12) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            materialID TEXT NULL,
+            typeBlock TEXT NULL,
+            idBlock TEXT NULL,
+            priorVAL INT(9) NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        )
+        ';
         return $table;
     }
 
