@@ -1,5 +1,5 @@
 {
-    "generated_at": "2025-11-26 17:42:12",
+    "generated_at": "2025-11-27 14:06:24",
     "sources": {
         "json_routes": 0,
         "sql_routes": 0
@@ -625,13 +625,13 @@
             "module": "user"
         },
         {
-            "path": "/materials/upravleniye-gorodami/v1/",
+            "path": "/materials/upravleniye-gorodami-v1/",
             "class": "\\Modules\\Materials\\Controller\\Index",
             "method": "openMaterial",
             "source": "SQL (fallback)"
         },
         {
-            "path": "/materials/upravleniye-gorodami/v2/",
+            "path": "/materials/remesla-i-trofei-v1/",
             "class": "\\Modules\\Materials\\Controller\\Index",
             "method": "openMaterial",
             "source": "SQL (fallback)"

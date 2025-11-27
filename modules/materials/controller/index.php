@@ -12,6 +12,8 @@ Class Index extends \Modules\Abs\Controller{
         \Modules\Core\Modul\Resource::load_conf($this->type_show);  
         $mater = new \Modules\Materials\Modul\Materialrepository;
         $this->data_view["materials"] =$mater->findAllActive();
+        $bc = new \Modules\Core\Modul\Breadcrumb;
+        $this->data_view["bc"] = $bc->show($bc->start());
         $this->list_file[] = APP_ROOT."/modules/core/view/breadcrumbs.php";
         $this->list_file[] = APP_ROOT."/modules/materials/view/index.php";
         $this->show();
@@ -26,6 +28,8 @@ Class Index extends \Modules\Abs\Controller{
         \Modules\Core\Modul\Resource::load_conf($this->type_show);  
         $mater = new \Modules\Materials\Modul\Materialopen;
         $this->data_view["materialOpenData"] =$mater->start();
+        $bc = new \Modules\Core\Modul\Breadcrumb;
+        $this->data_view["bc"] = $bc->show($bc->start());
         $this->list_file[] = APP_ROOT."/modules/core/view/breadcrumbs.php";
         $this->list_file[] = APP_ROOT."/modules/materials/view/openmaterial.php";
         $this->show();
