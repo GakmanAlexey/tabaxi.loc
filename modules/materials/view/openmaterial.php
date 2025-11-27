@@ -101,6 +101,17 @@ foreach($data as $d){
                 </div>
                 ';
         }
+        if($d[3]["typeH"] == "h4"){
+            echo '    
+                <div class="tut_006_container scale-container">
+                    <div class="tut_006_content" >
+                        <section class="tut_006_section" id="'.$d[3]["idH"].'">
+                            <h4 class="tut_006_section_subtitle">'.$d[3]["textH"].'</h3>
+                        </section>
+                    </div>
+                </div>
+                ';
+        }
     }elseif($d[0] == "p"){
         if($d[3]["typeP"] == NULL){
             echo '    
@@ -113,9 +124,51 @@ foreach($data as $d){
                 </div>
                 ';
         }
-    }elseif($d[0] == "t"){
-
+    }elseif($d[0] == "t"){        
+        $tableArray = unserialize($d[3]["bodyArray"]);
+        echo '
+     <div class="tut_006_container scale-container">
+        <div class="tut_006_content" id="">
+            <section class="tut_006_section" id="">
+                <table class="tut_006_vertical_table tut_006_vertical_table_w70">';
+                 $countTR=0;
+                    foreach($tableArray as $tableItem){                        
+                        echo '<tr>';  
+                        foreach($tableItem as $item){
+                            if($countTR == 0){ 
+                            echo '<th>'.$item.'</th>';
+                            }else{
+                            echo '<td>'.$item.'</td>';
+                            }
+                        }                         
+                        $countTR++;
+                    }
+        echo '    
+                </table>
+            </section>
+        </div>
+    </div>';
+    }elseif($d[0] == "l"){     
+        $arrayList = unserialize($d[3]["value_array"]);
+        if($d[3]["type_t"] == "c"){
+           $listenClass = "tut_006_ul_circle";
+        }else{
+           $listenClass = "tut_006_ul_decimal";
+        }
+        echo '
+    <div class="tut_006_container scale-container">
+        <div class="tut_006_content" id="">
+            <section class="tut_006_section" id="">
+                <ul class="'.$listenClass.'">';
+                foreach($arrayList as $listItem){
+                    echo '<li>'.$listItem.'</li>';
+                }
+    echo '
+                </ul>
+            </section>
+        </div>
+</div>    ';
     }
-}
-?>   
     
+}
+?> 

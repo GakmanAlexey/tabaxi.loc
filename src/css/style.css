@@ -2015,6 +2015,20 @@
                 font-size: 1.3rem;
             }
         }
+
+
+ .tut_006_ul_circle{
+    list-style-type: circle !important;
+    color: #5F4545;
+    margin-left: 15px;
+ } 
+ 
+ .tut_006_ul_decimal{
+    list-style-type: decimal !important;
+    color: #5F4545;
+    margin-left: 20px;
+ } 
+
          a{
             text-decoration: none;
         }

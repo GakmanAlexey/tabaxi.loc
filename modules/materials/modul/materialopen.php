@@ -96,6 +96,9 @@ class Materialopen{
                 case 'p':
                     $pageLink[3]  = $this->takeParagraph($pageLink); // функция для 'p'
                     break;
+                case 'l':
+                    $pageLink[3]  = $this->takeListes($pageLink); // функция для 'p'
+                    break;
                 default:
                     $pageLink[3]  = $this->takeOther($pageLink); // функция по умолчанию
                     break;
@@ -131,6 +134,17 @@ class Materialopen{
     {
         $pdo = \Modules\Core\Modul\Sql::connect();
         $sql = "SELECT * FROM ".\Modules\Core\Modul\Env::get("DB_PREFIX")."materials_paragraph WHERE id = :id Limit 1";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':id' => $pageLink[1]]);
+        $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $data;
+        
+    }
+
+    public function takeListes($pageLink)
+    {
+        $pdo = \Modules\Core\Modul\Sql::connect();
+        $sql = "SELECT * FROM ".\Modules\Core\Modul\Env::get("DB_PREFIX")."materials_data_list WHERE id = :id Limit 1";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([':id' => $pageLink[1]]);
         $data = $stmt->fetch(\PDO::FETCH_ASSOC);
