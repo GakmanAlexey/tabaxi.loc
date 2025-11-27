@@ -15,6 +15,7 @@ class Materialopen{
         $materialOpenData->fillFromParent($focusMaterial);
         $materialOpenData = $this->takePageLink( $materialOpenData);
         $materialOpenData = $this->takePageLinkBuild( $materialOpenData);
+        $materialOpenData = $this->takeMainDataTable( $materialOpenData);
         return $materialOpenData;
     }    
 
@@ -54,6 +55,28 @@ class Materialopen{
             return (int)$a[2] - (int)$b[2];
         });
         $materialOpenData->setTextPageLink($arrayLinkMaterial);
+        return $materialOpenData;
+    }
+
+    public function takeMainDataTable(\Modules\Materials\Modul\Materialopendata $materialOpenData)
+    {
+        $material = $materialOpenData->getId();
+        
+        $pdo = \Modules\Core\Modul\Sql::connect();
+        $sql = "SELECT * FROM ".\Modules\Core\Modul\Env::get("DB_PREFIX")."materials_data_tablet WHERE materialID = :materialID ";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':materialID' => $material]);
+        $arrayMainDataTable = [];
+        while($data = $stmt->fetch(\PDO::FETCH_ASSOC)){
+            $arrayMainDataTable[] =[$data["key_t"],$data["value_t"],$data["priorVAL"]];
+        }
+        
+        
+        usort($arrayMainDataTable, function($a, $b) {
+            return (int)$a[2] - (int)$b[2];
+        });
+
+        $materialOpenData->setTableStart($arrayMainDataTable);
         return $materialOpenData;
     }
 

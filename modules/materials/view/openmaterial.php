@@ -21,13 +21,15 @@ t - table
                 <div class="tut_006_hero_description"><?php echo $maOpDa->getSmallDescription();?></div>
                 
                 <div class="tut_006_hero_actions">
+                    <?php /*
                     <a href="" class="tut_006_btn tut_006_btn_primary">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M19 9H15V3H9V9H5L12 16L19 9ZM5 18V20H19V18H5Z"/>
                         </svg>
                         Скачать материал
-                    </a>
-                    <a href="#content" class="tut_006_btn tut_006_btn_secondary">
+                    </a> */
+                    ?>
+                    <a href="#intro" class="tut_006_btn tut_006_btn_secondary">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                         </svg>
@@ -38,38 +40,19 @@ t - table
             
             <div class="tut_006_sidebar">
                 <table class="tut_006_requirements_table">
+<?php
+$arrayTableMain = $maOpDa->getTableStart();
+foreach($arrayTableMain as $itemTableMain){
+    echo 
+    '
                     <tr>
-                        <td>Автор</td>
-                        <td>Александр Волков</td>
-                    </tr>
-                    <tr>
-                        <td>Соавторы</td>
-                        <td>Мария Смирнова<br>Дмитрий Петров<br>Анна Козлова</td>
-                    </tr>
-                    <tr>
-                        <td>Дата выпуска</td>
-                        <td>15.01.2025</td>
-                    </tr>
-                    <tr>
-                        <td>Версия</td>
-                        <td>2.1.4</td>
-                    </tr>
-                    <tr>
-                        <td>Язык</td>
-                        <td>Русский</td>
-                    </tr>
-                    <tr>
-                        <td>Формат</td>
-                        <td>PDF, EPUB</td>
-                    </tr>
-                    <tr>
-                        <td>Размер</td>
-                        <td>48.7 МБ</td>
-                    </tr>
-                    <tr>
-                        <td>Страниц</td>
-                        <td>214</td>
-                    </tr>
+                        <td>'.$itemTableMain[0].'</td>
+                        <td>'.$itemTableMain[1].'</td>
+                    </tr>    
+    ';
+}
+?>
+                    
                 </table>
             </div>
         </section>

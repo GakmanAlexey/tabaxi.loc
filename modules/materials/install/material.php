@@ -77,6 +77,18 @@ class Material  extends \Modules\Abs\Install{
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )
         ';
+
+        $table[] = '
+        CREATE TABLE '.\Modules\Core\Modul\Env::get("DB_PREFIX").'materials_data_tablet (
+            id INT(12) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            materialID TEXT NULL,
+            key_t TEXT NULL,
+            value_t TEXT NULL,
+            priorVAL INT(9) NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        )
+        ';
         return $table;
     }
 
