@@ -1,10 +1,10 @@
 {
-    "generated_at": "2025-11-27 17:52:35",
+    "generated_at": "2025-11-29 10:47:04",
     "sources": {
         "json_routes": 0,
         "sql_routes": 0
     },
-    "routes_count": 105,
+    "routes_count": 109,
     "routes": [
         {
             "path": "/admin/",
@@ -371,6 +371,30 @@
             "class": "Modules\\Seo\\Controller\\Adminajax",
             "method": "seo_default",
             "module": "seo"
+        },
+        {
+            "path": "/service/",
+            "class": "Modules\\Serv\\Controller\\Index",
+            "method": "index",
+            "module": "serv"
+        },
+        {
+            "path": "/service/vse-predmety-dnd-5e/",
+            "class": "Modules\\Serv\\Controller\\Items",
+            "method": "itemsOpen",
+            "module": "serv"
+        },
+        {
+            "path": "/service/oruzhee-dnd-5e/",
+            "class": "Modules\\Serv\\Controller\\Items",
+            "method": "itemsOpen",
+            "module": "serv"
+        },
+        {
+            "path": "/service/items/",
+            "class": "Modules\\Serv\\Controller\\Items",
+            "method": "items",
+            "module": "serv"
         },
         {
             "path": "/admin/shop/brand/",

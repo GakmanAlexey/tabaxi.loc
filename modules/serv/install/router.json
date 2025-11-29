@@ -1,0 +1,6 @@
+[
+    ["/service/", "Modules\\Serv\\Controller\\Index", "index"],
+    ["/service/vse-predmety-dnd-5e/", "Modules\\Serv\\Controller\\Items", "itemsOpen"],
+    ["/service/oruzhee-dnd-5e/", "Modules\\Serv\\Controller\\Items", "itemsOpen"],
+    ["/service/items/", "Modules\\Serv\\Controller\\Items", "items"]
+]
