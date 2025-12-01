@@ -10,6 +10,11 @@ class Itemtrans{
          <img src="'.$file->get_path().'" alt="" style="width:50px; ">
         ';
     }
+
+    public static function getHTMLSlug($item){
+        return '<a href="/service/items/open/?slug='.$item.'">Открыть</a>';
+    }
+
     public static function getImg($idIMG){        
         $file = \Modules\Files\Modul\Taker:: take($idIMG);
         return $file->get_path();
