@@ -1,18 +1,13 @@
 
 
 <?php  
-
-$array = [];
-$array[] = ["img","id","name","price","weight","rary","url"];  
-$array[] = ["img","id","name","price","weight","rary","url"];  
- $tableArray = $array;
         echo '
      <div class="tut_006_container scale-container">
         <div class="tut_006_content" id="">
             <section class="tut_006_section" id="">
-                <table class="tut_006_vertical_table tut_006_vertical_table_w70">';
+                <table class="tut_006_vertical_table ">';
                  $countTR=0;
-                    foreach($tableArray as $tableItem){                        
+                    foreach($this->data_view["itemList"] as $tableItem){                        
                         echo '<tr>';  
                         foreach($tableItem as $item){
                             if($countTR == 0){ 
