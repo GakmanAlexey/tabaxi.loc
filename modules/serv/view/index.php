@@ -1,25 +1,21 @@
-<div class="tut_005_container scale-container">
-        <div class="tut_005_materials_grid">
-           <a href="/service/vse-predmety-dnd-5e/">Все предметы днд  5е</a><br>
-           <a href="/service/oruzhee-dnd-5e/">Оружее днд 5е</a><br>
-           <a href="/service/items/">База предметов</a>
-                       
-        </div>
+
+<div class="tut_001_container scale-container">
+        <section class="tut_001_second_section">
+            <div class="tut_001_cards_container">
+            <?php
+foreach($this->data_view["repoService"] as $itemService){
+    echo '
+                <a class="tut_001_card appearance-effect" href="'.$itemService->getWebsiteUrl().'">
+                    <img src="'.\Modules\Serv\Modul\Servicemove::takeImg($itemService).'" alt="'.$itemService->getName().'" class="tut_001_card_image">
+                    <div class="tut_001_card_overlay">
+                        <div class="tut_001_card_content">
+                            <h3 class="tut_001_card_title">'.$itemService->getName().'</h3>
+                        </div>
+                    </div>
+                </a>';
+}
+            ?>
+                
+            </div>
+        </section>    
     </div>
-
-    <?php
-    /*
-$repository = new \Modules\Materials\Modul\Materialrepository();
-
-
-// Создание
-$material = \Modules\Materials\Modul\Material::create()
-    ->setName('Test Material 3')
-    ->setIsActive(1);
-$repository->save($material);
-
-// Поиск
-$foundMaterial = $repository->findById(1);
-$activeMaterials = $repository->findAllActive();
-*/
-    ?>

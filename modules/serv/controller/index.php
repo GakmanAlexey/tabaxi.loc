@@ -15,6 +15,10 @@ Class Index extends \Modules\Abs\Controller{
         $bc = new \Modules\Core\Modul\Breadcrumb;
         $this->data_view["bc"] = $bc->show($bc->start());
         $this->list_file[] = APP_ROOT."/modules/core/view/breadcrumbs.php";
+
+        
+        $repo = new \Modules\Serv\Modul\Servicerepository();
+        $this->data_view["repoService"] = $repo->findAll();
         $this->list_file[] = APP_ROOT."/modules/serv/view/index.php";
         $this->show();
         $this->cashe_end();
