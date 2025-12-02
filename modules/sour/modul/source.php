@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Source\Model;
+namespace Modules\Sour\Modul;
 
 class Source
 {
@@ -73,7 +73,7 @@ class Source
         ];
     }
 
-    public static function fromArray(array $data): self
+    public static function fromArray( $data)
     {
         $source = new self();
         

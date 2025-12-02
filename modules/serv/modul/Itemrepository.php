@@ -170,8 +170,8 @@ class Itemrepository{
             $timedArray[2] = $el->getName();         
             $timedArray[3] = \Modules\Serv\Modul\Itemtrans::getWeight($el->getWeight());       // 
             $timedArray[4] = \Modules\Serv\Modul\Itemtrans::getPrice($el->getBasePrice());    // 
-            $timedArray[5] = \Modules\Serv\Modul\Itemtrans::getRarityType($el->getRarity());       // 
-            $timedArray[6] = $el->getSourceId();     // 
+            $timedArray[5] = \Modules\Serv\Modul\Itemtrans::getRarityType($el->getRarity()); 
+            $timedArray[6] = \Modules\Serv\Modul\Itemtrans::getHTMLSource($el->getSourceId());     // 
             $timedArray[7] = \Modules\Serv\Modul\Itemtrans::getHTMLSlug($el->getSlug());         // 
             $newTable[]=$timedArray;
         }

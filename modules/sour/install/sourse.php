@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Sourse\Install;
+namespace Modules\Sour\Install;
 
 class Sourse  extends \Modules\Abs\Install{
 

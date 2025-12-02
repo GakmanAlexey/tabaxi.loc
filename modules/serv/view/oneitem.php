@@ -1,6 +1,13 @@
 <?php
 $data = $this->data_view["itemOpen"];
 //var_dump($data);
+
+// Создание сервиса
+// Создание сервиса
+$sourceService = new \Modules\Sour\Modul\Sourceservice;
+
+
+
 ?>
     <div class="tut_008_container scale-container">
                 <!-- Основной контент -->
@@ -12,6 +19,7 @@ $data = $this->data_view["itemOpen"];
                 <div class="tut_008_item_rarity"><?php echo $data->getRRarityType();?></div> 
                 <div class="tut_008_item_rarity">Цена: <?php echo $data->getRPrice();?></div>
                 <div class="tut_008_item_rarity">Вес: <?php echo $data->getRWeight();?></div>
+                <div class="tut_008_item_rarity">Источник: <?php echo $data->getRSource();?></div>
                 <div class="tut_008_item_description">
                     <?php echo $data->getDescription();?>
                 </div>

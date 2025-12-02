@@ -4,6 +4,17 @@ namespace Modules\Serv\Modul;
 
 class Itemtrans{
     // \Modules\Serv\Modul\Itemtrans::getHTMKImg($idIMG);
+    public static function getHTMLSource($sourceId){
+
+        return "[".self::getSource($sourceId)."]";
+    }
+    public static function getSource($sourceId){
+        $abbr = \Modules\Sour\Modul\SourceManager::getSourceAbbreviation($sourceId);
+        if( $abbr == NULL){
+             $abbr = "Неизвестен";
+        }
+        return $abbr;
+    }
     public static function getHTMKImg($idIMG){        
         $file = \Modules\Files\Modul\Taker:: take($idIMG);
         return '

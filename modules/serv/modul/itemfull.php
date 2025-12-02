@@ -8,6 +8,7 @@ class Itemfull extends Item
     private  $rWeight = "";
     private  $rPrice = "";
     private  $rRarityType = "";
+    private  $rSource = "";
 
     public function baseIN(Item $item): self
     {
@@ -17,6 +18,7 @@ class Itemfull extends Item
         $this->rWeight = \Modules\Serv\Modul\Itemtrans::getWeight($item->getWeight()); 
         $this->rPrice = \Modules\Serv\Modul\Itemtrans::getPrice($item->getBasePrice()); 
         $this->rRarityType = \Modules\Serv\Modul\Itemtrans::getRarityType($item->getRarity()); 
+        $this->rSource = \Modules\Serv\Modul\Itemtrans::getSource($item->getSourceId()); 
         
         return $this;
     }
@@ -70,6 +72,11 @@ class Itemfull extends Item
     {
         $instance = new static();
         return $instance->baseIN($item);
+    }
+    
+    public function getRSource(): string
+    {
+        return $this->rSource;
     }
     
     public function getRImg(): string
