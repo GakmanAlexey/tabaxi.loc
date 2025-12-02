@@ -1,0 +1,1687 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Хост: 127.0.0.1:3306
+-- Время создания: Дек 02 2025 г., 17:18
+-- Версия сервера: 10.5.17-MariaDB-log
+-- Версия PHP: 7.4.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- База данных: `tabaxi_my`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_cron_tasks`
+--
+
+CREATE TABLE `tab_cron_tasks` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `task_type` enum('function','shell','class') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_active` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `interval_sec` int(10) UNSIGNED NOT NULL,
+  `last_run` datetime(3) DEFAULT NULL,
+  `next_run` datetime DEFAULT NULL,
+  `timeout_sec` smallint(5) UNSIGNED DEFAULT 300,
+  `max_retries` tinyint(3) UNSIGNED DEFAULT 3,
+  `current_retries` tinyint(3) UNSIGNED DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_cron_task_params`
+--
+
+CREATE TABLE `tab_cron_task_params` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `task_id` int(10) UNSIGNED NOT NULL,
+  `param_name` varchar(50) NOT NULL,
+  `param_value` text DEFAULT NULL,
+  `param_order` tinyint(3) UNSIGNED DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=Aria DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_files`
+--
+
+CREATE TABLE `tab_files` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `size` bigint(20) UNSIGNED NOT NULL,
+  `path` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `extension` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `metadata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`metadata`)),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_files`
+--
+
+INSERT INTO `tab_files` (`id`, `name`, `type`, `size`, `path`, `extension`, `metadata`, `created_at`, `updated_at`) VALUES
+(1, 'main.png', 'image/png', 2197813, '/upload/aclpkbdadujdqiqsnpddnzjvbxlqbbdfmyqvpnyd.png', 'png', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\phpAD8.tmp\"}', '2025-11-25 12:47:10', NULL),
+(2, 'bg1.png', 'image/png', 1166208, '/upload/qxmarqxmnferbhipzecodkfqjilvyjymoizjbtgq.png', 'png', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\phpAE9.tmp\"}', '2025-11-25 12:47:10', NULL),
+(3, 'bg2.png', 'image/png', 1094234, '/upload/wmnyzpsghhfeqhsiaatbjqxobindofdrgcdigiif.png', 'png', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\phpAEA.tmp\"}', '2025-11-25 12:47:10', NULL),
+(4, 'orig.webp', 'image/webp', 233402, '/upload/veqqqhdljdnynwwjxwnmjbqrfanzibsghoewtanv.webp', 'webp', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\phpDD7A.tmp\"}', '2025-11-25 15:08:58', NULL),
+(5, 'orig (1).webp', 'image/webp', 230126, '/upload/kfwrtfibwrdqttxjxdkvkluwvntnvrifrkqpxcri.webp', 'webp', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\phpE87C.tmp\"}', '2025-11-26 15:33:37', NULL),
+(6, 'orig (2).webp', 'image/webp', 197564, '/upload/cgrloxdwninqtlrzbhlftnymdvpmyyijdvnelcrz.webp', 'webp', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\php2817.tmp\"}', '2025-11-26 15:48:05', NULL),
+(7, 'orig (3).webp', 'image/webp', 62140, '/upload/mhootuvanbaaycgcdfncmtnxfqesfelydwbbhvgi.webp', 'webp', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\phpEE6A.tmp\"}', '2025-11-28 21:13:25', NULL),
+(8, 'orig (4).webp', 'image/webp', 79374, '/upload/rvcnxuqfmybmusvpjehgciwzjqyygzsdfgktegor.webp', 'webp', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\phpEE6B.tmp\"}', '2025-11-28 21:13:25', NULL),
+(9, 'orig (5).webp', 'image/webp', 81200, '/upload/jtzcupfmyzkfabbvoavwtnwshyghoxdfzgdsbwrq.webp', 'webp', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\phpEE6C.tmp\"}', '2025-11-28 21:13:25', NULL),
+(10, 'orig (6).webp', 'image/webp', 46164, '/upload/gicvylegyjnvibrkrvclvztmocibxdmlftmmxnml.webp', 'webp', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\phpEE6D.tmp\"}', '2025-11-28 21:13:25', NULL),
+(11, 'orig (7).webp', 'image/webp', 41652, '/upload/xmbfrrrrozgrpgkurxjadfcrrjluqyfqveofmcrt.webp', 'webp', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\phpEE6E.tmp\"}', '2025-11-28 21:13:25', NULL),
+(12, 'orig (8).webp', 'image/webp', 84388, '/upload/xdyakvxabjfowrzuanydrbtvzvjbnhewftjvzbgk.webp', 'webp', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\phpEE6F.tmp\"}', '2025-11-28 21:13:25', NULL),
+(13, 'orig (9).webp', 'image/webp', 45332, '/upload/jywtlouxybytflweagdcettdmujyphucqbfqogph.webp', 'webp', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\phpEE70.tmp\"}', '2025-11-28 21:13:25', NULL),
+(14, 'orig (10).webp', 'image/webp', 88880, '/upload/ctmabkozkbeandockepfvftxhxoodfrtoalkmohn.webp', 'webp', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\phpEE71.tmp\"}', '2025-11-28 21:13:25', NULL),
+(15, 'orig (11).webp', 'image/webp', 86416, '/upload/rfipuchufoojfkwzzyfbupaywvupkmtwedbqqnxb.webp', 'webp', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\phpEE72.tmp\"}', '2025-11-28 21:13:25', NULL),
+(16, 'orig (12).webp', 'image/webp', 90472, '/upload/pmfikmbsasaokebsblkfbdnvyurhehsoxmpwyeek.webp', 'webp', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\phpEE73.tmp\"}', '2025-11-28 21:13:25', NULL),
+(17, '118735a7-0218-4e18-9ad0-5461586ab40b.jfif', 'image/jpeg', 539342, '/upload/nryqsqdlnegjbvxaogqeysxrqquutiojomsztgmm.jfif', 'jfif', '{\"original_tmp_name\":\"C:\\\\OSPanel2\\\\userdata\\\\temp\\\\upload\\\\php350C.tmp\"}', '2025-12-02 14:06:47', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_groups`
+--
+
+CREATE TABLE `tab_groups` (
+  `id` int(12) UNSIGNED NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_ru` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_default` tinyint(1) DEFAULT 0,
+  `prefix` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_heads`
+--
+
+CREATE TABLE `tab_heads` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title_q` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description_q` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `keys_q` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_q` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_heads`
+--
+
+INSERT INTO `tab_heads` (`id`, `url`, `title_q`, `description_q`, `keys_q`, `name_q`) VALUES
+(1, '/card/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(2, '/ajax/card/add/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(3, '/ajax/card/remove/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(4, '/ajax/card/delete/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(5, '/ajax/card/update_quantity/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(6, '/ajax/card/coupon/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(7, '/ajax/card/count/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(8, '/ajax/card/price/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(9, '/ajax/card/info/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(10, '/api/cdek/widget/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(11, '/service.php/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(12, '/api/cdek/widget/test/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(13, '/', 'Главная', 'tabaxi.ru:', ' ', 'Главная'),
+(14, '/ban/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(15, '/ajax/service/css/admin/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(16, '/ajax/service/css/default/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(17, '/d20/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(18, '/d20/player/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(19, '/d20/player/open/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(20, '/d20/npc/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(21, '/d20/npc/open/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(22, '/d20/town/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(23, '/d20/town/open/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(24, '/d20/mobs/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(25, '/d20/mobs/open/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(26, '/d20/quests/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(27, '/d20/quests/open/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(28, '/d20/factions/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(29, '/d20/factions/open/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(30, '/d20/items/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(31, '/d20/items/open/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(32, '/d20/skils/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(33, '/d20/skils/open/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(34, '/privacy/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(35, '/news/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(36, '/news/element/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(37, '/news/block/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(38, '/ajax/service/router/start/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(39, '/ajax/service/seo/admin/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(40, '/ajax/service/seo/default/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(41, '/brand/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(42, '/brand/test/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(43, '/brandblock/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(44, '/catalog/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(45, '/catalog/test/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(46, '/catalog/test/test1/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(47, '/user/login/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(48, '/user/login/success/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(49, '/user/register/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(50, '/user/register/success/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(51, '/user/verify-email/success/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(52, '/user/verify-email/failure/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(53, '/user/exit/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(54, '/user/verify-email/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(55, '/user/recover/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(56, '/user/recover/success/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(57, '/user/recover/step2/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(58, '/user/recover/step2/success/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(59, '/user/recover/step2/failure/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(60, '/ajax/user/active/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(61, '/ajax/user/noactive/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(62, '/ajax/user/unban/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(63, '/ajax/user/ban/', 'ТАЙТЛ ПО УМОЛЧАНИЮ', 'tabaxi.ru:', ' ', 'Имя по умолчанию'),
+(64, '/materials/upravleniye-gorodami-v1/', 'Дополнение для днд - Управление городами', 'Дополнение для днд - Управление городами', ' Управление городами', 'Управление городами'),
+(65, '/materials/remesla-i-trofei-v1/', 'Дополнение для днд - Ремесла и Трофеи', 'Дополнение для днд - Ремесла и Трофеи', 'Ремесла и Трофеи', 'Ремесла и Трофеи'),
+(66, '/materials/', 'Справочные материалы', 'Справочные материалы', 'Справочные материалы', 'Справочные материалы'),
+(67, '/service/', 'Сервисы', 'Сервисы', 'Сервисы', 'Сервисы'),
+(68, '/service/items/', 'Список всех предметов', 'Список всех предметов', 'Список всех предметов', 'Список всех предметов'),
+(69, '/service/items/open/', 'Информация о предмете', 'Информация о предмете', 'Информация о предмете', 'Информация о предмете');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_item_groups`
+--
+
+CREATE TABLE `tab_item_groups` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imgId` int(12) DEFAULT 0,
+  `parentId` int(11) DEFAULT 0,
+  `sortOrder` int(11) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_item_items`
+--
+
+CREATE TABLE `tab_item_items` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `categoryId` int(11) NOT NULL DEFAULT 0,
+  `weight` decimal(8,2) DEFAULT 0.00,
+  `basePrice` int(12) DEFAULT 0,
+  `rarity` int(2) DEFAULT 1,
+  `imgId` int(12) DEFAULT 0,
+  `sourceId` int(11) DEFAULT 0,
+  `tags` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `isActive` tinyint(1) DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_item_items`
+--
+
+INSERT INTO `tab_item_items` (`id`, `name`, `slug`, `description`, `categoryId`, `weight`, `basePrice`, `rarity`, `imgId`, `sourceId`, `tags`, `isActive`, `created_at`, `updated_at`) VALUES
+(1, 'Боевой посох', 'battle_staff', NULL, 0, '4.00', 20, 1, 7, 1, NULL, 1, '2025-11-28 20:12:42', '2025-12-02 10:39:46'),
+(2, 'Булава', 'bulava', NULL, 0, '4.00', 500, 1, 8, 0, NULL, 1, '2025-11-28 20:12:42', '2025-11-28 21:13:47'),
+(3, 'Дубинка', 'dubinka', NULL, 0, '2.00', 10, 1, 9, 0, NULL, 1, '2025-11-28 20:12:42', '2025-11-28 21:13:51'),
+(4, 'Кинжал', 'kinjal', NULL, 0, '1.00', 20, 1, 10, 0, NULL, 1, '2025-11-28 20:12:42', '2025-11-28 21:13:54'),
+(5, 'Копьё', 'kopie', NULL, 0, '3.00', 100, 1, 11, 0, NULL, 1, '2025-11-28 20:12:42', '2025-11-28 21:13:58'),
+(6, 'Лёгкий молот', 'legkii_molot', NULL, 0, '2.00', 200, 1, 12, 0, NULL, 1, '2025-11-28 20:12:42', '2025-11-28 21:14:01'),
+(7, 'Метательное копьё', 'metatilnoe_kopie', NULL, 0, '2.00', 50, 1, 13, 0, NULL, 1, '2025-11-28 20:12:42', '2025-11-28 21:14:06'),
+(8, 'Палица', 'palicha', NULL, 0, '10.00', 20, 1, 14, 0, NULL, 1, '2025-11-28 20:12:42', '2025-11-28 21:14:09'),
+(9, 'Ручной топор', 'ruchnoi_topor', NULL, 0, '2.00', 500, 1, 15, 0, NULL, 1, '2025-11-28 20:12:42', '2025-11-28 21:14:12'),
+(10, 'Серп', 'serp', NULL, 0, '2.00', 100, 1, 16, 0, NULL, 1, '2025-11-28 20:12:42', '2025-11-28 21:14:17'),
+(11, 'Арбалет, лёгкий', 'arbalet-lyogkiy', NULL, 0, '5.00', 2500, 1, 0, 0, NULL, 1, '2025-12-01 10:50:44', '2025-12-01 10:52:53'),
+(12, 'Дротик', 'drotik', NULL, 0, '0.25', 5, 1, 0, 0, NULL, 1, '2025-12-01 10:51:17', '2025-12-01 10:51:17'),
+(13, 'Короткий лук', 'korotkiy-luk', NULL, 0, '2.00', 2500, 1, 0, 0, NULL, 1, '2025-12-01 10:51:50', '2025-12-01 10:52:44'),
+(14, 'Праща', 'prascha', NULL, 0, '0.10', 10, 1, 0, 0, NULL, 1, '2025-12-01 10:52:36', '2025-12-01 10:52:36'),
+(15, 'Алебарда', 'alebarda', NULL, 0, '6.00', 2000, 1, 0, 0, NULL, 1, '2025-12-01 10:53:40', '2025-12-01 10:53:40'),
+(16, 'Боевая кирка', 'boyevaya-kirka', NULL, 0, '2.00', 500, 1, 0, 0, NULL, 1, '2025-12-01 10:54:19', '2025-12-01 10:54:19'),
+(17, 'Боевой молот', 'boyevoy-molot', NULL, 0, '2.00', 1500, 1, 0, 0, NULL, 1, '2025-12-01 10:54:45', '2025-12-01 10:54:45'),
+(18, 'Боевой топор', 'boyevoy-topor', NULL, 0, '4.00', 1000, 1, 0, 0, NULL, 1, '2025-12-01 10:55:27', '2025-12-01 10:55:27'),
+(19, 'Глефа', 'glefa', NULL, 0, '6.00', 2000, 1, 0, 0, NULL, 1, '2025-12-01 10:55:55', '2025-12-01 10:55:55'),
+(20, 'Двуручный меч', 'dvuruchniy-mech', NULL, 0, '6.00', 5000, 1, 0, 0, NULL, 1, '2025-12-01 10:56:25', '2025-12-01 10:56:25'),
+(21, 'Длинное копьё', 'dlinnoye-kopyo', NULL, 0, '6.00', 1000, 1, 0, 0, NULL, 1, '2025-12-01 10:56:53', '2025-12-01 10:56:53'),
+(22, 'Длинный меч', 'dlinniy-mech', NULL, 0, '3.00', 1500, 1, 0, 0, NULL, 1, '2025-12-01 10:57:25', '2025-12-01 10:57:25'),
+(23, 'Кнут', 'knut', NULL, 0, '3.00', 2000, 1, 0, 0, NULL, 1, '2025-12-01 10:58:04', '2025-12-01 10:58:04'),
+(24, 'Короткий меч', 'korotkiy-mech', NULL, 0, '2.00', 1000, 1, 0, 0, NULL, 1, '2025-12-01 10:58:28', '2025-12-01 10:58:28'),
+(25, 'Молот', 'molot', NULL, 0, '10.00', 1000, 1, 0, 0, NULL, 1, '2025-12-01 10:59:05', '2025-12-01 10:59:05'),
+(26, 'Моргенштерн', 'morgenshtern', NULL, 0, '4.00', 1500, 1, 0, 0, NULL, 1, '2025-12-01 10:59:27', '2025-12-01 10:59:27'),
+(27, 'Пика', 'pika', NULL, 0, '18.00', 500, 1, 0, 0, NULL, 1, '2025-12-01 11:00:05', '2025-12-01 11:00:05'),
+(28, 'Рапира', 'rapira', NULL, 0, '2.00', 2500, 1, 0, 0, NULL, 1, '2025-12-01 11:00:38', '2025-12-01 11:00:38'),
+(29, 'Секира', 'sekira', NULL, 0, '7.00', 3000, 1, 0, 0, NULL, 1, '2025-12-01 11:01:19', '2025-12-01 11:01:19'),
+(30, 'Скимитар', 'skimitar', NULL, 0, '3.00', 25, 1, 0, 0, NULL, 1, '2025-12-01 11:01:45', '2025-12-01 11:01:45'),
+(31, 'Трезубец', 'trezubets', NULL, 0, '4.00', 500, 1, 0, 0, NULL, 1, '2025-12-01 11:02:13', '2025-12-01 11:02:13'),
+(32, 'Цеп', 'tsep', NULL, 0, '2.00', 1000, 1, 0, 0, NULL, 1, '2025-12-01 11:02:36', '2025-12-01 11:02:36'),
+(33, 'Арбалет, ручной', 'arbalet-ruchnoy', NULL, 0, '3.00', 75, 1, 0, 0, NULL, 1, '2025-12-01 11:05:41', '2025-12-01 11:05:41'),
+(34, 'Арбалет, тяжёлый', 'arbalet-tyazhyoliy', NULL, 0, '18.00', 5000, 1, 0, 0, NULL, 1, '2025-12-01 11:06:17', '2025-12-01 11:06:17'),
+(35, 'Длинный лук', 'dlinniy-luk', NULL, 0, '2.00', 5000, 1, 0, 0, NULL, 1, '2025-12-01 11:06:47', '2025-12-01 11:06:47'),
+(36, 'Духовая трубка', 'dukhovaya-trubka', NULL, 0, '1.00', 1000, 1, 0, 0, NULL, 1, '2025-12-01 11:07:29', '2025-12-01 11:07:29'),
+(37, 'Сеть', 'set', NULL, 0, '3.00', 100, 1, 0, 0, NULL, 1, '2025-12-01 11:07:49', '2025-12-01 11:07:49');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_item_link_groups`
+--
+
+CREATE TABLE `tab_item_link_groups` (
+  `id` int(12) NOT NULL,
+  `itemId` int(11) NOT NULL,
+  `groupId` int(11) NOT NULL,
+  `sortOrder` int(11) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_materials`
+--
+
+CREATE TABLE `tab_materials` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idImg` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `smallDescription` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dounloadUrl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `firstTag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tableStart` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `urlBlock` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `isActive` tinyint(1) DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_materials`
+--
+
+INSERT INTO `tab_materials` (`id`, `name`, `idImg`, `smallDescription`, `dounloadUrl`, `firstTag`, `tableStart`, `url`, `urlBlock`, `isActive`, `created_at`, `updated_at`) VALUES
+(1, 'Управление городами', '5', 'Добро пожаловать в мир, который дышит. Мир, где отзвук ваших поступков распространяется далеко за пределы подземелья, а слава и позор живут дольше, чем память о сражении с древним драконом. Это руководство посвящено не искусству сражения или магии, а куда более тонкой и могущественной силе - силе управления.', NULL, NULL, NULL, '/materials/upravleniye-gorodami-v1/', '/upravleniye-gorodami-v1/', 1, '2025-11-25 12:39:55', '2025-11-27 11:05:47'),
+(2, 'Ремесла и Трофеи', '6', 'Великие герои, чьи имена гремит в сагах, и безымянные странники, что бредут проселочными дорогами  все они начинают свой путь здесь, у щедрого подола самой природы. Эта книга ваш верный спутник в мире прикладной магии, где терпеливая рука добывает чудеса из грубой материи. Вы научитесь слышать тайный шёпот корней, распознавать потаённый блеск жил в тёмной глубине скал, чувствовать ритм реки, скрывающей в своих струях серебристую добычу, и превращать простую древесину и камень в шедевры, достойные королевских дворцов. Откройте мир, где величайшие сокровища творятся не заклинаниями, а мастерством, и где истинная алхимия начинается с умения протянуть руку и взять дары, что щедро предлагает земля.', NULL, NULL, NULL, '/materials/remesla-i-trofei-v1/', '/remesla-i-trofei-v1/', 1, '2025-11-25 12:40:36', '2025-11-27 11:05:40');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_materials_data_list`
+--
+
+CREATE TABLE `tab_materials_data_list` (
+  `id` int(12) NOT NULL,
+  `materialID` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type_t` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `value_array` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_materials_data_list`
+--
+
+INSERT INTO `tab_materials_data_list` (`id`, `materialID`, `type_t`, `value_array`, `created_at`, `updated_at`) VALUES
+(1, '2', 'd', 'a:6:{i:0;s:29:\"Лесные растения\";i:1;s:29:\"Горные растения\";i:2;s:33:\"Болотные растения\";i:3;s:35:\"Равнинные растения\";i:4;s:35:\"Пустынные растения\";i:5;s:29:\"Водные растения\";}', '2025-11-27 15:00:46', '2025-11-27 15:00:46'),
+(2, '2', 'c', 'a:4:{i:0;s:22:\"Уровни 1-4: 1к4\";i:1;s:22:\"Уровни 5-9: 1к6\";i:2;s:24:\"Уровни 10-12: 1к8\";i:3;s:25:\"Уровни 13-15: 1к10\";}', '2025-11-27 15:00:46', '2025-11-27 15:00:46');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_materials_data_tablet`
+--
+
+CREATE TABLE `tab_materials_data_tablet` (
+  `id` int(12) NOT NULL,
+  `materialID` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `key_t` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `value_t` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `priorVAL` int(9) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_materials_data_tablet`
+--
+
+INSERT INTO `tab_materials_data_tablet` (`id`, `materialID`, `key_t`, `value_t`, `priorVAL`, `created_at`, `updated_at`) VALUES
+(1, '1', 'Автор', 'Табакси', 100, '2025-11-26 14:42:44', '2025-11-26 14:43:03'),
+(2, '1', 'Соавторы', 'Табакси КисьПись', 101, '2025-11-26 14:42:44', '2025-11-26 14:48:41'),
+(3, '1', 'Дата выпуска', '26.11.2025', 102, '2025-11-26 14:42:44', '2025-11-26 14:42:44'),
+(4, '1', 'Версия', 'v 1.0.0', 103, '2025-11-26 14:42:44', '2025-11-26 14:42:44'),
+(5, '1', 'Язык', 'Русский', 104, '2025-11-26 14:42:44', '2025-11-26 14:42:44'),
+(6, '2', 'Автор', 'Табакси', 100, '2025-11-26 14:42:44', '2025-11-26 14:43:03'),
+(7, '2', 'Версия', 'v 1.0.0', 103, '2025-11-26 14:42:44', '2025-11-26 14:42:44'),
+(8, '2', 'Язык', 'Русский', 104, '2025-11-26 14:42:44', '2025-11-26 14:42:44');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_materials_heads`
+--
+
+CREATE TABLE `tab_materials_heads` (
+  `id` int(12) NOT NULL,
+  `typeH` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `textH` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `idH` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `classH` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `styleCSSH` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_materials_heads`
+--
+
+INSERT INTO `tab_materials_heads` (`id`, `typeH`, `textH`, `idH`, `classH`, `styleCSSH`, `created_at`, `updated_at`) VALUES
+(1, 'h2', 'Живой мир: как ваши решения меняют всё', 'intro', NULL, NULL, '2025-11-26 11:46:00', '2025-11-26 11:46:00'),
+(2, 'h3', 'За стеной таверны', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(3, 'h3', 'Основы Власти', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(4, 'h3', 'Совет', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(5, 'h3', 'Управленец: Права и обязанности', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(6, 'h3', 'Процесс принятия законов', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(7, 'h3', 'От идеи до указа: жизненный цикл закона', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(8, 'h2', 'Ремесла и Трофеи: Ремесла ключ к успеху', 'intro', NULL, NULL, '2025-11-26 11:46:00', '2025-11-26 11:46:00'),
+(9, 'h3', 'Сбор Трав', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(10, 'h3', 'Биомы', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(11, 'h3', 'Приобретение Растений', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(12, 'h3', 'Механика сбор трав', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(13, 'h3', 'Сбор трав. Группа лес', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(14, 'h3', 'Сбор трав. Группа горы', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(15, 'h3', 'Сбор трав. Группа болота', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(16, 'h3', 'Сбор трав. Группа равнины', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(17, 'h3', 'Сбор трав. Группа пустыня', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(18, 'h3', 'Сбор трав. Группа водные просторы', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(19, 'h4', 'Таблица видов биомов', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(20, 'h4', 'Встреча с Торговцем', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(21, 'h3', 'Механика сбор трав', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(22, 'h4', 'Уровни Мастерства', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(23, 'h4', 'Инструменты травника', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33'),
+(24, 'h4', 'Процесс Сбора', NULL, NULL, NULL, '2025-11-26 11:47:33', '2025-11-26 11:47:33');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_materials_link`
+--
+
+CREATE TABLE `tab_materials_link` (
+  `id` int(12) NOT NULL,
+  `materialID` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `typeBlock` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `idBlock` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `priorVAL` int(9) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_materials_link`
+--
+
+INSERT INTO `tab_materials_link` (`id`, `materialID`, `typeBlock`, `idBlock`, `priorVAL`, `created_at`, `updated_at`) VALUES
+(1, '1', 'h', '1', 100, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(2, '1', 'h', '2', 102, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(3, '1', 'h', '3', 104, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(4, '1', 'h', '4', 106, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(5, '1', 'h', '5', 108, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(6, '1', 'h', '6', 110, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(7, '1', 'h', '7', 112, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(8, '1', 'p', '1', 101, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(9, '1', 'p', '2', 103, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(10, '1', 'p', '3', 105, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(11, '1', 'p', '4', 107, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(12, '1', 'p', '5', 109, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(13, '1', 'p', '6', 111, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(14, '1', 'p', '7', 113, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(15, '2', 'h', '8', 100, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(16, '2', 'p', '8', 102, '2025-11-26 12:00:28', '2025-11-27 11:32:06'),
+(17, '2', 'h', '9', 101, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(18, '2', 'h', '10', 103, '2025-11-26 12:00:28', '2025-11-26 12:00:28'),
+(19, '2', 'p', '9', 104, '2025-11-26 12:00:28', '2025-11-27 11:32:06'),
+(20, '2', 'h', '19', 105, '2025-11-26 12:00:28', '2025-11-27 11:51:33'),
+(21, '2', 't', '1', 106, '2025-11-26 12:00:28', '2025-11-27 11:51:33'),
+(22, '2', 'h', '11', 106, '2025-11-26 12:00:28', '2025-11-27 11:51:33'),
+(23, '2', 'p', '10', 107, '2025-11-26 12:00:28', '2025-11-27 11:51:33'),
+(24, '2', 'h', '20', 108, '2025-11-26 12:00:28', '2025-11-27 11:51:33'),
+(25, '2', 'p', '11', 109, '2025-11-26 12:00:28', '2025-11-27 11:51:33'),
+(26, '2', 'l', '1', 110, '2025-11-26 12:00:28', '2025-11-27 15:01:43'),
+(27, '2', 'p', '12', 111, '2025-11-26 12:00:28', '2025-11-27 15:01:43'),
+(28, '2', 'p', '13', 112, '2025-11-26 12:00:28', '2025-11-27 15:01:43'),
+(29, '2', 'h', '21', 113, '2025-11-26 12:00:28', '2025-11-27 15:01:43'),
+(30, '2', 'p', '14', 114, '2025-11-26 12:00:28', '2025-11-27 15:01:43'),
+(31, '2', 'h', '22', 115, '2025-11-26 12:00:28', '2025-11-27 15:01:43'),
+(32, '2', 'p', '15', 116, '2025-11-26 12:00:28', '2025-11-27 15:01:43'),
+(33, '2', 't', '2', 117, '2025-11-26 12:00:28', '2025-11-27 15:01:43'),
+(34, '2', 'h', '23', 118, '2025-11-26 12:00:28', '2025-11-27 15:01:43'),
+(35, '2', 'p', '16', 119, '2025-11-26 12:00:28', '2025-11-27 15:01:43'),
+(36, '2', 't', '3', 120, '2025-11-26 12:00:28', '2025-11-27 15:01:43'),
+(37, '2', 'h', '24', 121, '2025-11-26 12:00:28', '2025-11-27 15:01:43'),
+(38, '2', 'p', '17', 122, '2025-11-26 12:00:28', '2025-11-27 15:01:43'),
+(39, '2', 'l', '2', 123, '2025-11-26 12:00:28', '2025-11-27 15:01:43'),
+(40, '2', 'p', '18', 124, '2025-11-26 12:00:28', '2025-11-27 15:01:43'),
+(41, '2', 'p', '19', 125, '2025-11-26 12:00:28', '2025-11-27 15:01:43'),
+(42, '2', 'p', '20', 126, '2025-11-26 12:00:28', '2025-11-27 15:01:43');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_materials_paragraph`
+--
+
+CREATE TABLE `tab_materials_paragraph` (
+  `id` int(12) NOT NULL,
+  `typeP` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `textP` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `idP` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `classP` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `styleCSSP` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_materials_paragraph`
+--
+
+INSERT INTO `tab_materials_paragraph` (`id`, `typeP`, `textP`, `idP`, `classP`, `styleCSSP`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'Добро пожаловать в мир, который дышит. Мир, где отзвук ваших поступков распространяется далеко за пределы подземелья, а слава и позор живут дольше, чем память о сражении с древним драконом. Это руководство посвящено не искусству сражения или магии, а куда более тонкой и могущественной силе - силе управления.', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-26 11:46:58'),
+(2, NULL, 'В стандартном приключении герои могут спасти деревню от гоблинов, получить награду и двинуться дальше. Их правило это спасенные жизни и полные кошельки. Но что происходит после? Кузнец, чью мастерскую разорили гоблины, не сможет восстановить ее без помощи. Торговцы, напуганные нападением, поднимут цены или уедут в более спокойные края. Беженцы из соседних земель, услышав о \"спасенной\" деревне, потянутся сюда в поисках защиты, создав новые проблемы.\r\nЭто и есть Живой Мир. Мир, где каждое действие это камень, брошенный в воду. Задача этой системы дать вам инструменты не просто бросать эти камни, но и управлять расходящимися кругами.\r\nВы не просто наемники с мечами. Ваши слова имеют вес. Ваши решения формируют реальность. <br><br>Когда вы становитесь у руля управления, ваша роль меняется:<br>\r\nВместо того чтобы убить монстра, вы решаете, как финансировать отряд стражников, который будет охранять земли от монстров.<br>\r\nВместо того чтобы найти артефакт, вы принимаете закон, регулирующий магические исследования, который позволит вашим маганам создавать подобные артефакты.<br>\r\nВместо того чтобы убедить одного короля, вы своей политикой влияете на настроения десятков и сотен людей, создавая целую нацию, лояльную вашим идеалам.<br><br>\r\nВласть это не просто привилегия издавать указы. Это постоянный баланс. Каждое решение имеет свою цену. Снизите налоги обрадуете народ, но оставите казну пустой, рискуя не выплатить жалование стражникам. Прикажите строить оборонительные стены повысите безопасность, но лишитесь доходов от торговли, которую задавите пошлинами для финансирования стройки.', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-26 11:46:58'),
+(3, NULL, '«Власть это не право, а бремя. Она ложится на плечи тяжелее любых доспехов и требует мудрости, превосходящей знание самых древних заклинаний. Тот, кто не понимает этого, не просто падет - он увлечет за собой всех, кто ему доверился».<br>*Архивариус Тельвин, историк Королевской Библиотеки Вододепа', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-26 11:46:58'),
+(4, NULL, 'Совет - это правящий орган, состоящий из трех избранных Управленцев, наделенных правом создавать и изменять законы поселения. Это не просто собрание героев; это институт, чьи решения оказывают прямое и немедленное влияние на жизнь каждого обитателя вашего мира - будь то игрок или неигровой персонаж. Совет представляет собой квинтэссенцию политической воли сообщества. Его основная задача - превращать личные амбиции и общие идеи в работающие правовые механизмы, балансируя между процветанием, безопасностью и свободой.', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-26 11:46:58'),
+(5, NULL, 'Законодательная Инициатива: Предлагать, обсуждать и голосовать за новые законы, указы и постановления.<br>\r\nДоступ к Казначейству: Запрашивать у Мастера отчет о состоянии городской казны и контролировать основные статьи расходов (с одобрения большинства Совета).<br>\r\nПубличная Трибуна: Обращаться с официальными заявлениями ко всем жителям, получая автоматическое внимание и (в большинстве случаев) аудиторию.<br>\r\nНазначение Должностных Лиц: Согласовывать назначения на ключевые посты (например, Капитан Стражи, Главный Заклинатель, Смотритель Рынков), если такие должности введены в игре.<br>\r\n<br>\r\nСовещание: Участвовать в заседаниях Совета, будь то отдельный игровой сеанс или обсуждение в отведенном канале между играми.<br>\r\nСлужение Обществу: Действовать в интересах поселения, а не только своей личной выгоды. Эгоистичные решения могут привести к народному гневу.<br>\r\nНести Ответственность: Быть готовым держать ответ за последствия принятых законов перед избирателями и, что немаловажно, перед Мастером.<br>\r\nСоблюдение Иерархии: Признавать, что окончательное слово в толковании правил, эффектов и последствий всегда остается за Мастером.<br>', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-26 11:46:58'),
+(6, NULL, '«Закон это не просто слова на пергаменте. Это застывшая воля, мост между идеей и реальностью. И как любой мост, он должен быть выстроен на прочном фундаменте, иначе рухнет под тяжестью последствий».<br>* Советник Элдор, карлик, бывший управитель рудников<br>', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-26 11:46:58'),
+(7, NULL, 'Каждый закон проходит через следующие стадии:<br>\r\n<br>1. Инициатива:<br>Любой игрок (не только Управленец) может предложить идею для нового закона. Для этого он должен изложить ее в установленном формате ) и передать на рассмотрение одному из членов Совета. Это поощряет политическое участие всех жителей.\r\n<br>2. Обсуждение в Совете:<br>Управленцы изучают предложение в специально отведенном для этого месте. Они задают вопросы автору, обсуждают потенциальные эффекты, слабые места и возможные компромиссы. Мастер на этом этапе выступает в роли эксперта, помогая оценить возможные игровые последствия.\r\n<br>3. Голосование:<br>После обсуждения проводится формальное голосование среди трех Управленцев. Для принятия закона требуется большинство голосов. Голосование является окончательным.\r\n<br>4. Обнародование:<br>Принятый закон передается Мастеру, который официально объявляет о нем всем игрокам через основной канал мира. Объявление должно содержать полный текст закона и дату, с которой он вступает в силу.\r\n<br>5. Вступление в силу:<br>Закон начинает действовать либо немедленно после обнародования, либо с указанной в нем даты (например, «с начала следующей игровой недели»).\r\n<br>6. Исполнение и последствия:<br>Мастер интегрирует эффекты закона в игру. Он отслеживает изменения в показателях поселения (казны, настроения и т.д.) и отыгрывает реакцию мира. ', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-26 11:46:58'),
+(8, NULL, 'Сбор трав это не просто ремесло, а тонкое искусство слышать шёпот земли. Настоящий травник читает лес как раскрытую книгу: по капле росы на паутинке узнаёт о близости лунного вереска, а по кругу примятой травы находит гнездо заревого корня. Каждый лист и корешок, собранный в нужный час и с должным почтением, хранит в себе не только целительную силу, но и частицу древней магии мира, которую лишь предстоит высвободить в умелых руках.', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-26 11:46:58'),
+(9, NULL, 'Необъятный мир раскинул свои просторы от сумрачных, непроходимых чащ до выжженных солнцем пустынь. Каждый уголок этого живого мира обладает своей уникальной душой и дарами, которые могут быть открыты лишь тому, кто обладает знанием и терпением. Для травника или алхимика нет неважных земель - есть лишь неизученные. Чтобы систематизировать эти бескрайние богатства, мудрые гербаристы и следопыты условно разделили все природное многообразие на несколько обширных групп, внутри которых царят схожие законы и произрастают схожие дары природы.', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-26 11:46:58'),
+(10, NULL, 'Даже самый опытный травник не всегда может позволить себе долгие поиски в дикой местности. В крупных городах и отдалённых поселениях можно найти торговцев, специализирующихся на продаже ботанических редкостей.\n', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-27 12:14:16'),
+(11, NULL, 'Торговец растениями (Гербарист, Алхимик или даже Друид-отшельник) обычно имеет ассортимент, характерный для той природной зоны, в которой он обитает или которую недавно посетил.\r\nОпределение ассортимента. Мастер может заранее определить биом, с которым связан торговец. Если же ассортимент меняется (например, у странствующего торговца), его можно определить, бросив 1к6:', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-27 12:14:16'),
+(12, NULL, 'Торговцы редко рискуют добывать самые редкие и опасные экземпляры. Уровень растений (N), которые можно у них приобрести, зависит от уровня самого персонажа и определяется по формуле:\r\nN = Уровень персонажа + 1к6\r\nПример: Гермона решила купить растения будучи персонажем 5 уровня. При выпадения 1 на 1д6 она может купить максимум растения 6 уровня. а при выпадения 6 на 1д6 может купить максимум растение 11 уровня. ', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-27 12:14:16'),
+(13, NULL, 'Максимальное количество растений купленных в 1 день у одного торговца 5. Ассортимент обновляется каждый день.', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-27 12:14:16'),
+(14, NULL, 'Искусство сбора трав - это не просто умение находить растения; это глубокое понимание природы, её ритмов и даров. Данный раздел описывает правила, позволяющие персонажам открывать для себя ботанические богатства мира.', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-27 12:14:16'),
+(15, NULL, 'Ваше умение находить и аккуратно извлекать растения представлено уровнем мастерства, от 1 (Новичок) до 15 (Верховный Травник). Каждый уровень открывает доступ к более редким и ценным видам, а также повышает вашу эффективность.', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-27 12:14:16'),
+(16, NULL, 'Качество вашего инструмента напрямую влияет на результат сбора.', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-27 12:14:16'),
+(17, NULL, 'Ограничения по времени и усилиям. За один день, предшествующий длительному отдыху, персонаж может совершить до трёх попыток сбора трав. Каждая попытка, потраченная в этот день на другие виды деятельности (например, ремесленный крафт или поиск полезных ископаемых), уменьшает количество доступных попыток сбора. Таким образом, за одну игровую сессию (максимум 3 игровых дня) персонаж может совершить не более 9 попыток.\r\nПроверка сбора. Когда вы пытаетесь собрать растение, совершите проверку, используя следующий бонус: 1dX + (уровень мастерства - 1) + (бонус инструмента - 1)\r\nКость, которую вы бросаете, зависит от вашего уровня сбора трав:', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-27 12:14:16'),
+(18, NULL, 'Важное правило: Знакомство с растением. Персонаж может собрать растение без потерь, только если он был с ним предварительно ознакомлен. Знакомство требует изучения целого, неповреждённого образца (например, в библиотеке, у наставника или в дикой природе с помощью проверки Интеллекта (Анализ природы)) и приводит к уничтожению изучаемого образца.', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-27 12:14:16'),
+(19, NULL, 'Если при сборе выпадает неизученное растение, персонаж получает растение на один уровень ниже. Если и это растение не изучено, результат понижается ещё на один уровень, и так до тех пор, пока не будет найдено изученное растение или результат не упадёт ниже 1-го уровня (в этом случае сбор считается неудачным).', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-27 12:14:16'),
+(20, NULL, 'Пример: У Гермионы 5 уровень мастерства, и она использует Серп гербариста (+3). Она пытается собрать растение 10-го уровня в лесу. Она бросает 1к6 (для уровня 5) + (5-1=4 уровень навыка) + (3-1=2 уровень растения). Она выбросила 5 на к6. Итог: 5 + 4 + 2 = 11. Этого достаточно, чтобы найти растение 11-го уровня. Однако, если это растение ей не знакомо, она получит растение 10-го уровня. Если и оно не изучено — растение 9-го уровня, и так далее.', NULL, NULL, NULL, '2025-11-26 11:46:58', '2025-11-27 12:14:16');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_materials_sources`
+--
+
+CREATE TABLE `tab_materials_sources` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idImg` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `urlBlock` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `isActive` tinyint(1) DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_materials_sources`
+--
+
+INSERT INTO `tab_materials_sources` (`id`, `name`, `slug`, `idImg`, `description`, `url`, `urlBlock`, `isActive`, `created_at`, `updated_at`) VALUES
+(1, 'Книга Игрока', 'players_handbook_5e', NULL, NULL, NULL, NULL, 1, '2025-11-28 20:09:22', '2025-11-28 20:09:22');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_materials_tablet`
+--
+
+CREATE TABLE `tab_materials_tablet` (
+  `id` int(12) NOT NULL,
+  `headClass` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `headstyleCSSP` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `headArray` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bodyClass` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bodystyleCSSP` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bodyArray` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `idP` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `classP` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `styleCSSP` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_materials_tablet`
+--
+
+INSERT INTO `tab_materials_tablet` (`id`, `headClass`, `headstyleCSSP`, `headArray`, `bodyClass`, `bodystyleCSSP`, `bodyArray`, `idP`, `classP`, `styleCSSP`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL, NULL, NULL, 'a:7:{i:0;a:2:{i:0;s:12:\"Группа\";i:1;s:18:\"Вхождение\";}i:1;a:2:{i:0;s:6:\"Лес\";i:1;s:78:\"Лиственный лес,  хвойный лес, Смешанный лес\";}i:2;a:2:{i:0;s:8:\"Горы\";i:1;s:54:\"Горы, Холмы, Ущелья, предгорья\";}i:3;a:2:{i:0;s:12:\"Болота\";i:1;s:76:\"Болота, Топи, Затопленное поле, Берега рек\";}i:4;a:2:{i:0;s:14:\"Равнины\";i:1;s:48:\"Равнины, Степи, Редколесье\";}i:5;a:2:{i:0;s:14:\"Пустыня\";i:1;s:94:\"Песчаные пустыни, засушливые земли,заснежные земли\";}i:6;a:2:{i:0;s:29:\"Водные просторы\";i:1;s:70:\"Дно рек, Побережье морей, Глубоководье\";}}', NULL, NULL, NULL, '2025-11-27 11:53:21', '2025-11-27 12:11:09'),
+(2, NULL, NULL, NULL, NULL, NULL, 'a:16:{i:0;a:2:{i:0;s:14:\"Уровень\";i:1;s:8:\"Опыт\";}i:1;a:2:{i:0;s:1:\"1\";i:1;s:1:\"0\";}i:2;a:2:{i:0;s:1:\"2\";i:1;s:3:\"100\";}i:3;a:2:{i:0;s:1:\"3\";i:1;s:3:\"250\";}i:4;a:2:{i:0;s:1:\"4\";i:1;s:3:\"500\";}i:5;a:2:{i:0;s:1:\"5\";i:1;s:5:\"1 000\";}i:6;a:2:{i:0;s:1:\"6\";i:1;s:5:\"2 000\";}i:7;a:2:{i:0;s:1:\"7\";i:1;s:5:\"4 000\";}i:8;a:2:{i:0;s:1:\"8\";i:1;s:5:\"8 000\";}i:9;a:2:{i:0;s:1:\"9\";i:1;s:6:\"16 000\";}i:10;a:2:{i:0;s:2:\"10\";i:1;s:6:\"32 000\";}i:11;a:2:{i:0;s:2:\"11\";i:1;s:6:\"64 000\";}i:12;a:2:{i:0;s:2:\"12\";i:1;s:7:\"125 000\";}i:13;a:2:{i:0;s:2:\"13\";i:1;s:7:\"250 000\";}i:14;a:2:{i:0;s:2:\"14\";i:1;s:7:\"500 000\";}i:15;a:2:{i:0;s:2:\"15\";i:1;s:9:\"1 000 000\";}}', NULL, NULL, NULL, '2025-11-27 11:53:21', '2025-11-27 12:11:09'),
+(3, NULL, NULL, NULL, NULL, NULL, 'a:6:{i:0;a:4:{i:0;s:20:\"Инструмент\";i:1;s:16:\"Редкость\";i:2;s:18:\"Стоимость\";i:3;s:24:\"Бонус к сбору\";}i:1;a:4:{i:0;s:25:\"Серп травника\";i:1;s:14:\"Обычный\";i:2;s:29:\"1 Золотая монета\";i:3;s:2:\"+1\";}i:2;a:4:{i:0;s:23:\"Нож травника\";i:1;s:14:\"Обычный\";i:2;s:28:\"50 Золотых монет\";i:3;s:2:\"+2\";}i:3;a:4:{i:0;s:27:\"Стеклянный нож\";i:1;s:18:\"Необычный\";i:2;s:29:\"250 Золотых монет\";i:3;s:2:\"+3\";}i:4;a:4:{i:0;s:29:\"Мифриловый серп\";i:1;s:12:\"Редкий\";i:2;s:31:\"2 000 Золотых монет\";i:3;s:2:\"+4\";}i:5;a:4:{i:0;s:17:\"Резец фей\";i:1;s:23:\"Очень редкий\";i:2;s:32:\"10 000 Золотых монет\";i:3;s:2:\"+5\";}}', NULL, NULL, NULL, '2025-11-27 11:53:21', '2025-11-27 12:11:09');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_news`
+--
+
+CREATE TABLE `tab_news` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_ru` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url_block` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `full_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `main_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `list_img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category_id` int(11) NOT NULL,
+  `publish_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `edit_date` timestamp NULL DEFAULT NULL,
+  `author_id` int(12) NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_news_categories`
+--
+
+CREATE TABLE `tab_news_categories` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_ru` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url_block` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `full_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `main_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `list_img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_password_reset_tokens`
+--
+
+CREATE TABLE `tab_password_reset_tokens` (
+  `id` int(12) NOT NULL,
+  `user_id` int(12) NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expires_at` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_permissions_group`
+--
+
+CREATE TABLE `tab_permissions_group` (
+  `id` int(12) NOT NULL,
+  `group_id` int(12) NOT NULL,
+  `permission_id` int(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_permissions_list`
+--
+
+CREATE TABLE `tab_permissions_list` (
+  `id` int(12) NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_permissions_user`
+--
+
+CREATE TABLE `tab_permissions_user` (
+  `id` int(12) NOT NULL,
+  `user_id` int(12) NOT NULL,
+  `permission_id` int(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_router`
+--
+
+CREATE TABLE `tab_router` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `class` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `funct` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_router`
+--
+
+INSERT INTO `tab_router` (`id`, `url`, `class`, `funct`) VALUES
+(1, '/materials/upravleniye-gorodami-v1/', '\\Modules\\Materials\\Controller\\Index', 'openMaterial'),
+(2, '/materials/remesla-i-trofei-v1/', '\\Modules\\Materials\\Controller\\Index', 'openMaterial');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_services`
+--
+
+CREATE TABLE `tab_services` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `short_description` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `full_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category_id` int(11) DEFAULT 0,
+  `parent_category_id` int(11) DEFAULT 0,
+  `tags` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo_img_id` int(11) DEFAULT 0,
+  `gallery_img_ids` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website_url` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `demo_url` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `api_available` tinyint(1) DEFAULT 0,
+  `platforms` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `languages` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `difficulty` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price_model` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price_info` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `original_release_year` int(4) DEFAULT NULL,
+  `last_updated_date` date DEFAULT NULL,
+  `rating` decimal(3,2) DEFAULT 0.00,
+  `review_count` int(11) DEFAULT 0,
+  `view_count` int(11) DEFAULT 0,
+  `click_count` int(11) DEFAULT 0,
+  `features` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `system_requirements` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `supported_editions` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_official` tinyint(1) DEFAULT 0,
+  `is_recommended` tinyint(1) DEFAULT 0,
+  `sort_order` int(11) DEFAULT 0,
+  `featured` tinyint(1) DEFAULT 0,
+  `weight` int(11) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `published_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_services`
+--
+
+INSERT INTO `tab_services` (`id`, `name`, `slug`, `short_description`, `full_description`, `category_id`, `parent_category_id`, `tags`, `logo_img_id`, `gallery_img_ids`, `website_url`, `demo_url`, `api_available`, `platforms`, `languages`, `difficulty`, `price_model`, `price_info`, `status`, `original_release_year`, `last_updated_date`, `rating`, `review_count`, `view_count`, `click_count`, `features`, `system_requirements`, `supported_editions`, `is_official`, `is_recommended`, `sort_order`, `featured`, `weight`, `created_at`, `updated_at`, `published_at`) VALUES
+(1, 'Все предметы', 'items', 'Описание', NULL, 0, 0, NULL, 17, NULL, '/service/items/', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0.00', 0, 1, 1, NULL, NULL, NULL, 0, 0, 0, 0, 0, '2025-12-02 13:27:02', '2025-12-02 14:07:01', NULL),
+(2, 'Все предметы', 'items', 'Описание', NULL, 0, 0, NULL, 1, NULL, '/service/items/', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0.00', 0, 1, 1, NULL, NULL, NULL, 0, 0, 0, 0, 0, '2025-12-02 13:27:02', '2025-12-02 13:45:27', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_shop_brand`
+--
+
+CREATE TABLE `tab_shop_brand` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_ru` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `code` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `external_guid` varchar(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url_full` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url_block` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sync_date` datetime DEFAULT NULL,
+  `is_sync_with_1c` tinyint(1) DEFAULT 0,
+  `external_code` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `view_count` int(11) DEFAULT 0,
+  `product_count` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_shop_card`
+--
+
+CREATE TABLE `tab_shop_card` (
+  `id` int(11) NOT NULL,
+  `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `price` decimal(12,2) NOT NULL DEFAULT 0.00,
+  `old_price` decimal(12,2) NOT NULL DEFAULT 0.00,
+  `discount` decimal(12,2) NOT NULL DEFAULT 0.00,
+  `shipping_price` decimal(12,2) NOT NULL DEFAULT 0.00,
+  `shipping_included` tinyint(1) NOT NULL DEFAULT 0,
+  `commission_bank` decimal(12,2) NOT NULL DEFAULT 0.00,
+  `commission_included` tinyint(1) NOT NULL DEFAULT 0,
+  `user_id` int(11) DEFAULT NULL,
+  `guest_id` varchar(40) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `product_list` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `expires_at` datetime DEFAULT NULL,
+  `session_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `currency` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'RUB',
+  `total_weight` decimal(10,3) NOT NULL DEFAULT 0.000,
+  `items_count` int(11) NOT NULL DEFAULT 0,
+  `total_quantity` int(11) NOT NULL DEFAULT 0,
+  `coupon_code` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `coupon_discount` decimal(12,2) NOT NULL DEFAULT 0.00,
+  `tax_amount` decimal(12,2) NOT NULL DEFAULT 0.00,
+  `notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_type` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payment_method` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contact_phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contact_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_shop_card`
+--
+
+INSERT INTO `tab_shop_card` (`id`, `status`, `price`, `old_price`, `discount`, `shipping_price`, `shipping_included`, `commission_bank`, `commission_included`, `user_id`, `guest_id`, `product_list`, `created_at`, `updated_at`, `expires_at`, `session_id`, `currency`, `total_weight`, `items_count`, `total_quantity`, `coupon_code`, `coupon_discount`, `tax_amount`, `notes`, `ip_address`, `user_agent`, `delivery_type`, `payment_method`, `delivery_address`, `contact_phone`, `contact_email`) VALUES
+(1, 'active', '0.00', '0.00', '0.00', '0.00', 0, '0.00', 0, NULL, 'jyjhkm425x', NULL, '2025-11-19 17:33:34', NULL, '2025-12-19 17:33:34', NULL, 'RUB', '0.000', 0, 0, NULL, '0.00', '0.00', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', NULL, NULL, NULL, NULL, NULL),
+(2, 'active', '0.00', '0.00', '0.00', '0.00', 0, '0.00', 0, 1, 'jyjhkm425x', NULL, '2025-11-23 20:48:11', NULL, '2025-12-23 20:48:11', NULL, 'RUB', '0.000', 0, 0, NULL, '0.00', '0.00', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_shop_catalog`
+--
+
+CREATE TABLE `tab_shop_catalog` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `parent_id` int(11) UNSIGNED DEFAULT NULL,
+  `parent_guid` varchar(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_ru` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `code` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `external_guid` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `external_code` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url_full` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url_block` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sync_date` datetime DEFAULT NULL,
+  `is_sync_with_1c` tinyint(1) DEFAULT 0,
+  `view_count` int(11) DEFAULT 0,
+  `product_count` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_shop_product`
+--
+
+CREATE TABLE `tab_shop_product` (
+  `id` bigint(20) NOT NULL,
+  `external_guid` varchar(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `external_code` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `article` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_ru` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url_full` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url_block` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `text` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` decimal(12,2) NOT NULL,
+  `old_price` decimal(12,2) DEFAULT NULL,
+  `currency` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT 'RUB',
+  `is_active` tinyint(1) DEFAULT 1,
+  `in_stock` tinyint(1) DEFAULT 0,
+  `quantity` int(11) DEFAULT 0,
+  `brand_id` bigint(20) DEFAULT NULL,
+  `category_id` bigint(20) DEFAULT NULL,
+  `main_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `images` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sync_date` datetime DEFAULT NULL,
+  `is_sync_with_1c` tinyint(1) DEFAULT 0,
+  `sku` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `views_count` int(11) DEFAULT 0,
+  `sales_count` int(11) DEFAULT 0,
+  `barcode` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `width` decimal(10,2) DEFAULT NULL,
+  `height` decimal(10,2) DEFAULT NULL,
+  `length` decimal(10,2) DEFAULT NULL,
+  `weight` decimal(10,2) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `has_variations` tinyint(1) DEFAULT 0,
+  `attributes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tags` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_shop_specific_data`
+--
+
+CREATE TABLE `tab_shop_specific_data` (
+  `id` bigint(20) NOT NULL,
+  `specific_id` bigint(20) NOT NULL,
+  `product_id` bigint(20) NOT NULL,
+  `varianr_id` bigint(20) NOT NULL,
+  `value` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_shop_specific_list`
+--
+
+CREATE TABLE `tab_shop_specific_list` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name_ru` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `unit` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `is_filter` tinyint(1) DEFAULT 1,
+  `is_visible` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_shop_variation`
+--
+
+CREATE TABLE `tab_shop_variation` (
+  `id` bigint(20) NOT NULL,
+  `product_id` bigint(20) NOT NULL,
+  `external_guid` varchar(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `external_code` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` decimal(12,2) NOT NULL,
+  `old_price` decimal(12,2) DEFAULT NULL,
+  `quantity` int(11) DEFAULT 0,
+  `sku` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT 1,
+  `images` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `attributes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sync_date` datetime DEFAULT NULL,
+  `is_sync_with_1c` tinyint(1) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_sitemap`
+--
+
+CREATE TABLE `tab_sitemap` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lastmod_s` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `change_s` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `priority_s` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_sources`
+--
+
+CREATE TABLE `tab_sources` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abbreviation` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `edition` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `imgId` int(12) DEFAULT 0,
+  `url` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `full_url` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_official` tinyint(1) DEFAULT 1,
+  `publisher` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `creator_user_id` int(11) DEFAULT NULL,
+  `is_public` tinyint(1) DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_sources`
+--
+
+INSERT INTO `tab_sources` (`id`, `name`, `slug`, `abbreviation`, `edition`, `type`, `imgId`, `url`, `full_url`, `is_official`, `publisher`, `creator_user_id`, `is_public`, `created_at`, `updated_at`) VALUES
+(1, 'Player\'s Handbook', 'players-handbook', 'PHB', '5th Edition', 'book', 1, 'https://dnd.wizards.com/products/tabletop-games/rpg-products/players-handbook', NULL, 1, 'Wizards of the Coast', 1, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(2, 'Dungeon Master\'s Guide', 'dungeon-masters-guide', 'DMG', '5th Edition', 'book', 2, 'https://dnd.wizards.com/products/tabletop-games/rpg-products/dungeon-masters-guide', NULL, 1, 'Wizards of the Coast', 1, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(3, 'Monster Manual', 'monster-manual', 'MM', '5th Edition', 'book', 3, 'https://dnd.wizards.com/products/tabletop-games/rpg-products/monster-manual', NULL, 1, 'Wizards of the Coast', 1, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(4, 'Xanathar\'s Guide to Everything', 'xanathars-guide', 'XGtE', NULL, 'book', 4, 'https://dnd.wizards.com/products/tabletop-games/rpg-products/xanathars-guide-everything', NULL, 1, 'Wizards of the Coast', 1, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(5, 'Tasha\'s Cauldron of Everything', 'tashas-cauldron', 'TCoE', NULL, 'book', 5, 'https://dnd.wizards.com/products/tabletop-games/rpg-products/tashas-cauldron-everything', NULL, 1, 'Wizards of the Coast', 1, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(6, 'Curse of Strahd', 'curse-of-strahd', 'CoS', NULL, 'adventure', 6, 'https://dnd.wizards.com/products/tabletop-games/rpg-products/curse-strahd', NULL, 1, 'Wizards of the Coast', 1, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(7, 'Volo\'s Guide to Monsters', 'volos-guide', 'VGtM', NULL, 'book', 7, 'https://dnd.wizards.com/products/tabletop-games/rpg-products/volos-guide-to-monsters', NULL, 1, 'Wizards of the Coast', 1, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(8, 'Mordenkainen\'s Tome of Foes', 'mordenkainens-tome', 'MToF', NULL, 'book', 8, 'https://dnd.wizards.com/products/tabletop-games/rpg-products/mordenkainens-tome-foes', NULL, 1, 'Wizards of the Coast', 1, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(9, 'Icewind Dale: Rime of the Frostmaiden', 'icewind-dale', 'IDRotF', NULL, 'adventure', 9, 'https://dnd.wizards.com/products/tabletop-games/rpg-products/icewind-dale-rime-frostmaiden', NULL, 1, 'Wizards of the Coast', 1, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(10, 'The Wild Beyond the Witchlight', 'wild-beyond-witchlight', 'WBtW', NULL, 'adventure', 10, 'https://dnd.wizards.com/products/wild-beyond-witchlight', NULL, 1, 'Wizards of the Coast', 1, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(11, 'Critical Role: Tal\'Dorei Campaign Setting', 'critical-role', 'CRTCS', 'Reborn', 'third-party', 11, 'https://darringtonpress.com/taldorei-campaign-setting-reborn/', NULL, 0, 'Darrington Press', 2, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(12, 'Kobold Press: Tome of Beasts', 'tome-of-beasts', 'ToB', '1st Edition', 'third-party', 12, 'https://koboldpress.com/kpstore/product/tome-of-beasts-1-for-5th-edition/', NULL, 0, 'Kobold Press', 2, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(13, 'Pathfinder Core Rulebook', 'pathfinder-core', 'PFCRB', '2nd Edition', 'system', 13, 'https://paizo.com/products/btq01zp3', NULL, 1, 'Paizo', 3, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(14, 'Vampire: The Masquerade', 'vampire-masquerade', 'VtM', '5th Edition', 'system', 14, 'https://www.worldofdarkness.com/vampire-the-masquerade-5th-edition', NULL, 1, 'World of Darkness', 3, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(15, 'Call of Cthulhu', 'call-of-cthulhu', 'CoC', '7th Edition', 'system', 15, 'https://www.chaosium.com/call-of-cthulhu-rpg/', NULL, 1, 'Chaosium', 3, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(16, 'Dragon Magazine Archive', 'dragon-magazine', 'DMag', NULL, 'magazine', 16, 'https://www.dmsguild.com/browse.php?filters=45470_0_0_0_0', NULL, 1, 'Wizards of the Coast', 1, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(17, 'Dungeon Magazine Archive', 'dungeon-magazine', 'DunMag', NULL, 'magazine', 17, 'https://www.dmsguild.com/browse.php?filters=45471_0_0_0_0', NULL, 1, 'Wizards of the Coast', 1, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(18, 'Unearthed Arcana (UA)', 'unearthed-arcana', 'UA', NULL, 'playtest', 18, 'https://dnd.wizards.com/unearthedarcana', NULL, 1, 'Wizards of the Coast', 1, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(19, 'D&D Beyond Homebrew', 'dnd-beyond', 'DDB', NULL, 'homebrew', 19, 'https://www.dndbeyond.com/homebrew', NULL, 0, NULL, 4, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02'),
+(20, 'Homebrew Wiki', 'homebrew-wiki', 'HW', NULL, 'wiki', 20, 'https://homebrewery.naturalcrit.com', NULL, 0, 'Community', 5, 1, '2025-12-02 10:07:02', '2025-12-02 10:07:02');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_users`
+--
+
+CREATE TABLE `tab_users` (
+  `id` int(12) NOT NULL,
+  `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password_hash` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_active` tinyint(1) DEFAULT 1,
+  `is_banned` tinyint(1) DEFAULT 0,
+  `ban_reason` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ban_expiry_date` datetime DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_users`
+--
+
+INSERT INTO `tab_users` (`id`, `username`, `email`, `password_hash`, `is_active`, `is_banned`, `ban_reason`, `ban_expiry_date`, `created_at`, `updated_at`) VALUES
+(1, 'log', 'gakman@ya.ru', '$2y$12$XpK40qenwUBNUf3QyxOvZ.UH4uANmjMry1ZunulWMQyVhFQZelc5C', 1, 0, NULL, NULL, '2025-11-23 17:47:30', '2025-11-23 17:48:01');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_user_groups`
+--
+
+CREATE TABLE `tab_user_groups` (
+  `id` int(12) UNSIGNED NOT NULL,
+  `user_id` int(12) NOT NULL,
+  `group_id` int(12) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_user_register_token`
+--
+
+CREATE TABLE `tab_user_register_token` (
+  `id` int(12) NOT NULL,
+  `user_id` int(12) NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expires_at` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tab_user_sessions`
+--
+
+CREATE TABLE `tab_user_sessions` (
+  `id` int(12) NOT NULL,
+  `user_id` int(12) NOT NULL,
+  `token` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expires_at` timestamp NOT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tab_user_sessions`
+--
+
+INSERT INTO `tab_user_sessions` (`id`, `user_id`, `token`, `expires_at`, `ip_address`) VALUES
+(1, 1, 'jpRraWaQ9EQm1IybCFfDpkUXlFbHtzTa7iGsVZso', '2026-01-01 12:57:38', '127.0.0.1');
+
+--
+-- Индексы сохранённых таблиц
+--
+
+--
+-- Индексы таблицы `tab_cron_tasks`
+--
+ALTER TABLE `tab_cron_tasks`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_active_next_run` (`is_active`,`next_run`),
+  ADD KEY `idx_type_active` (`task_type`,`is_active`);
+
+--
+-- Индексы таблицы `tab_cron_task_params`
+--
+ALTER TABLE `tab_cron_task_params`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_task_id` (`task_id`),
+  ADD KEY `idx_task_param` (`task_id`,`param_name`);
+
+--
+-- Индексы таблицы `tab_files`
+--
+ALTER TABLE `tab_files`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_files_extension` (`extension`),
+  ADD KEY `idx_files_type` (`type`),
+  ADD KEY `idx_files_created_at` (`created_at`);
+
+--
+-- Индексы таблицы `tab_groups`
+--
+ALTER TABLE `tab_groups`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name_unique` (`name`);
+
+--
+-- Индексы таблицы `tab_heads`
+--
+ALTER TABLE `tab_heads`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tab_item_groups`
+--
+ALTER TABLE `tab_item_groups`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_slug` (`slug`),
+  ADD KEY `idx_parent` (`parentId`);
+
+--
+-- Индексы таблицы `tab_item_items`
+--
+ALTER TABLE `tab_item_items`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`),
+  ADD KEY `idx_slug` (`slug`),
+  ADD KEY `idx_category` (`categoryId`),
+  ADD KEY `idx_rarity` (`rarity`),
+  ADD KEY `idx_source` (`sourceId`);
+
+--
+-- Индексы таблицы `tab_item_link_groups`
+--
+ALTER TABLE `tab_item_link_groups`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_itemId` (`itemId`),
+  ADD KEY `idx_groupId` (`groupId`);
+
+--
+-- Индексы таблицы `tab_materials`
+--
+ALTER TABLE `tab_materials`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tab_materials_data_list`
+--
+ALTER TABLE `tab_materials_data_list`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tab_materials_data_tablet`
+--
+ALTER TABLE `tab_materials_data_tablet`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tab_materials_heads`
+--
+ALTER TABLE `tab_materials_heads`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tab_materials_link`
+--
+ALTER TABLE `tab_materials_link`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tab_materials_paragraph`
+--
+ALTER TABLE `tab_materials_paragraph`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tab_materials_sources`
+--
+ALTER TABLE `tab_materials_sources`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tab_materials_tablet`
+--
+ALTER TABLE `tab_materials_tablet`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tab_news`
+--
+ALTER TABLE `tab_news`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `author_id` (`author_id`),
+  ADD KEY `is_active` (`is_active`);
+
+--
+-- Индексы таблицы `tab_news_categories`
+--
+ALTER TABLE `tab_news_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tab_password_reset_tokens`
+--
+ALTER TABLE `tab_password_reset_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Индексы таблицы `tab_permissions_group`
+--
+ALTER TABLE `tab_permissions_group`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tab_permissions_list`
+--
+ALTER TABLE `tab_permissions_list`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`);
+
+--
+-- Индексы таблицы `tab_permissions_user`
+--
+ALTER TABLE `tab_permissions_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tab_router`
+--
+ALTER TABLE `tab_router`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tab_services`
+--
+ALTER TABLE `tab_services`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_slug` (`slug`),
+  ADD KEY `idx_category_id` (`category_id`),
+  ADD KEY `idx_status` (`status`(20)),
+  ADD KEY `idx_price_model` (`price_model`(20)),
+  ADD KEY `idx_rating` (`rating`),
+  ADD KEY `idx_view_count` (`view_count`),
+  ADD KEY `idx_featured` (`featured`),
+  ADD KEY `idx_parent_category_id` (`parent_category_id`),
+  ADD KEY `idx_release_year` (`original_release_year`),
+  ADD KEY `idx_created_at` (`created_at`);
+
+--
+-- Индексы таблицы `tab_shop_brand`
+--
+ALTER TABLE `tab_shop_brand`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`),
+  ADD UNIQUE KEY `external_guid` (`external_guid`),
+  ADD UNIQUE KEY `url_block` (`url_block`),
+  ADD KEY `is_active` (`is_active`),
+  ADD KEY `is_sync_with_1c` (`is_sync_with_1c`);
+
+--
+-- Индексы таблицы `tab_shop_card`
+--
+ALTER TABLE `tab_shop_card`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `session_id` (`session_id`),
+  ADD KEY `status` (`status`),
+  ADD KEY `expires_at` (`expires_at`),
+  ADD KEY `created_at` (`created_at`);
+
+--
+-- Индексы таблицы `tab_shop_catalog`
+--
+ALTER TABLE `tab_shop_catalog`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `idx_external_guid` (`external_guid`),
+  ADD UNIQUE KEY `idx_code` (`code`),
+  ADD UNIQUE KEY `idx_url_block` (`url_block`),
+  ADD KEY `idx_parent` (`parent_id`),
+  ADD KEY `idx_active` (`is_active`),
+  ADD KEY `idx_sync` (`is_sync_with_1c`);
+
+--
+-- Индексы таблицы `tab_shop_product`
+--
+ALTER TABLE `tab_shop_product`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `products_external_guid_unique` (`external_guid`),
+  ADD KEY `tab_shop_product_brand_id_index` (`brand_id`),
+  ADD KEY `tab_shop_product_category_id_index` (`category_id`),
+  ADD KEY `tab_shop_product_article_index` (`article`),
+  ADD KEY `tab_shop_product_external_code_index` (`external_code`),
+  ADD KEY `tab_shop_product_sku_index` (`sku`),
+  ADD KEY `tab_shop_product_barcode_index` (`barcode`);
+
+--
+-- Индексы таблицы `tab_shop_specific_data`
+--
+ALTER TABLE `tab_shop_specific_data`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tab_shop_specific_list`
+--
+ALTER TABLE `tab_shop_specific_list`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tab_shop_variation`
+--
+ALTER TABLE `tab_shop_variation`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `tab_shop_product_variations_external_guid_unique` (`external_guid`),
+  ADD UNIQUE KEY `tab_shop_product_variations_sku_unique` (`sku`),
+  ADD KEY `tab_shop_product_variations_product_id_index` (`product_id`),
+  ADD KEY `tab_shop_product_variations_external_code_index` (`external_code`);
+
+--
+-- Индексы таблицы `tab_sitemap`
+--
+ALTER TABLE `tab_sitemap`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tab_sources`
+--
+ALTER TABLE `tab_sources`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`),
+  ADD KEY `idx_slug` (`slug`),
+  ADD KEY `idx_abbreviation` (`abbreviation`),
+  ADD KEY `idx_type` (`type`),
+  ADD KEY `idx_edition` (`edition`),
+  ADD KEY `idx_is_official` (`is_official`),
+  ADD KEY `idx_is_public` (`is_public`),
+  ADD KEY `idx_creator` (`creator_user_id`);
+
+--
+-- Индексы таблицы `tab_users`
+--
+ALTER TABLE `tab_users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD KEY `idx_tab_users_username` (`username`),
+  ADD KEY `idx_tab_users_email` (`email`);
+
+--
+-- Индексы таблицы `tab_user_groups`
+--
+ALTER TABLE `tab_user_groups`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `group_id` (`group_id`);
+
+--
+-- Индексы таблицы `tab_user_register_token`
+--
+ALTER TABLE `tab_user_register_token`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Индексы таблицы `tab_user_sessions`
+--
+ALTER TABLE `tab_user_sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_tab_user_sessions_user_id` (`user_id`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `tab_cron_tasks`
+--
+ALTER TABLE `tab_cron_tasks`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_cron_task_params`
+--
+ALTER TABLE `tab_cron_task_params`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_files`
+--
+ALTER TABLE `tab_files`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_groups`
+--
+ALTER TABLE `tab_groups`
+  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_heads`
+--
+ALTER TABLE `tab_heads`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_item_groups`
+--
+ALTER TABLE `tab_item_groups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_item_items`
+--
+ALTER TABLE `tab_item_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_item_link_groups`
+--
+ALTER TABLE `tab_item_link_groups`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_materials`
+--
+ALTER TABLE `tab_materials`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_materials_data_list`
+--
+ALTER TABLE `tab_materials_data_list`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_materials_data_tablet`
+--
+ALTER TABLE `tab_materials_data_tablet`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_materials_heads`
+--
+ALTER TABLE `tab_materials_heads`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_materials_link`
+--
+ALTER TABLE `tab_materials_link`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_materials_paragraph`
+--
+ALTER TABLE `tab_materials_paragraph`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_materials_sources`
+--
+ALTER TABLE `tab_materials_sources`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_materials_tablet`
+--
+ALTER TABLE `tab_materials_tablet`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_news`
+--
+ALTER TABLE `tab_news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_news_categories`
+--
+ALTER TABLE `tab_news_categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_password_reset_tokens`
+--
+ALTER TABLE `tab_password_reset_tokens`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_permissions_group`
+--
+ALTER TABLE `tab_permissions_group`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_permissions_list`
+--
+ALTER TABLE `tab_permissions_list`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_permissions_user`
+--
+ALTER TABLE `tab_permissions_user`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_router`
+--
+ALTER TABLE `tab_router`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_services`
+--
+ALTER TABLE `tab_services`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_shop_brand`
+--
+ALTER TABLE `tab_shop_brand`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_shop_card`
+--
+ALTER TABLE `tab_shop_card`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_shop_catalog`
+--
+ALTER TABLE `tab_shop_catalog`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_shop_product`
+--
+ALTER TABLE `tab_shop_product`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_shop_specific_data`
+--
+ALTER TABLE `tab_shop_specific_data`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_shop_specific_list`
+--
+ALTER TABLE `tab_shop_specific_list`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_shop_variation`
+--
+ALTER TABLE `tab_shop_variation`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_sitemap`
+--
+ALTER TABLE `tab_sitemap`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_sources`
+--
+ALTER TABLE `tab_sources`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_users`
+--
+ALTER TABLE `tab_users`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_user_groups`
+--
+ALTER TABLE `tab_user_groups`
+  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_user_register_token`
+--
+ALTER TABLE `tab_user_register_token`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `tab_user_sessions`
+--
+ALTER TABLE `tab_user_sessions`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Ограничения внешнего ключа сохраненных таблиц
+--
+
+--
+-- Ограничения внешнего ключа таблицы `tab_news`
+--
+ALTER TABLE `tab_news`
+  ADD CONSTRAINT `fk_news_author` FOREIGN KEY (`author_id`) REFERENCES `tab_users` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_news_category` FOREIGN KEY (`category_id`) REFERENCES `tab_news_categories` (`id`) ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `tab_password_reset_tokens`
+--
+ALTER TABLE `tab_password_reset_tokens`
+  ADD CONSTRAINT `tab_password_reset_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tab_users` (`id`) ON DELETE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `tab_shop_catalog`
+--
+ALTER TABLE `tab_shop_catalog`
+  ADD CONSTRAINT `fk_catalog_parent` FOREIGN KEY (`parent_id`) REFERENCES `tab_shop_catalog` (`id`) ON DELETE SET NULL;
+
+--
+-- Ограничения внешнего ключа таблицы `tab_shop_variation`
+--
+ALTER TABLE `tab_shop_variation`
+  ADD CONSTRAINT `tab_shop_product_variations_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `tab_shop_product` (`id`) ON DELETE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `tab_user_groups`
+--
+ALTER TABLE `tab_user_groups`
+  ADD CONSTRAINT `tab_user_groups_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tab_users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `tab_user_groups_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `tab_groups` (`id`) ON DELETE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `tab_user_register_token`
+--
+ALTER TABLE `tab_user_register_token`
+  ADD CONSTRAINT `tab_user_register_token_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tab_users` (`id`) ON DELETE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `tab_user_sessions`
+--
+ALTER TABLE `tab_user_sessions`
+  ADD CONSTRAINT `tab_user_sessions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tab_users` (`id`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
