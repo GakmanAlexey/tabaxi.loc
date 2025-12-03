@@ -163,7 +163,7 @@
     <div class="tut_009_container scale-container">
         <div class="tut_009_footer">
             <div class="tut_009_logo">
-                    <div class="tut_009_logo_icon">ТУТ</div>
+                    <div class="tut_009_logo_icon"><img src="/ico.svg" style="width:50px;"></div>
                     <div class="tut_009_logo_text">Таверна у Табакси</div>
                 </div>
             <a href="">лицензионное соглашение</a>

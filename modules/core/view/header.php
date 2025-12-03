@@ -4,7 +4,7 @@
         <div class="tut_nav_004_nav">
             <!-- Логотип -->
             <div class="tut_nav_004_logo" onclick="toggleNav()">
-                <div class="tut_nav_004_logo_icon">ТУТ</div>
+                <div class="tut_nav_004_logo_icon"><img src="/ico.svg" style="width:40px;"></div>
                 <div class="tut_nav_004_logo_text">Таверна у Табакси</div>
             </div>
 

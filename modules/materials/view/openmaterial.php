@@ -124,30 +124,57 @@ foreach($data as $d){
                 </div>
                 ';
         }
-    }elseif($d[0] == "t"){        
-        $tableArray = unserialize($d[3]["bodyArray"]);
-        echo '
-     <div class="tut_006_container scale-container">
-        <div class="tut_006_content" id="">
-            <section class="tut_006_section" id="">
-                <table class="tut_006_vertical_table tut_006_vertical_table_w70">';
-                 $countTR=0;
-                    foreach($tableArray as $tableItem){                        
-                        echo '<tr>';  
-                        foreach($tableItem as $item){
-                            if($countTR == 0){ 
-                            echo '<th>'.$item.'</th>';
-                            }else{
-                            echo '<td>'.$item.'</td>';
+    }elseif($d[0] == "t"){    
+        if($d[3]["idP"] == 1){
+                $tableArray = unserialize($d[3]["bodyArray"]);
+                echo '
+            <div class="tut_006_container scale-container">
+                <div class="tut_006_content" id="">
+                    <section class="tut_006_section" id="">
+                        <table class="tut_006_vertical_table tut_006_vertical_table_w70">';
+                        $countTR=0;
+                            foreach($tableArray as $tableItem){                        
+                                echo '<tr>';  
+                                foreach($tableItem as $item){
+                                    if($countTR == 0){ 
+                                    echo '<th>'.$item.'</th>';
+                                    }else{
+                                    echo '<td>'.$item.'</td>';
+                                    }
+                                }                         
+                                $countTR++;
                             }
-                        }                         
-                        $countTR++;
-                    }
-        echo '    
-                </table>
-            </section>
-        </div>
-    </div>';
+                echo '    
+                        </table>
+                    </section>
+                </div>
+            </div>';
+        }elseif($d[3]["idP"] == 2){
+            $tableArray = unserialize($d[3]["bodyArray"]);
+            echo '
+            <div class="tut_006_container scale-container">
+                <div class="tut_006_content" id="">
+                    <section class="tut_006_section" id="">
+                        <table class="tut_006_vertical_table tut_006_vertical_table_w70">';
+                        $countTR=0;
+                            foreach($tableArray as $tableItem){                        
+                                echo '<tr>';  
+                                foreach($tableItem as $item){
+                                    if($countTR == 0){ 
+                                    echo '<th>'.$item.'</th>';
+                                    }else{
+                                        $text = \Modules\Materials\Modul\Box::callBox($item);
+                                    echo '<td>'.$text.'</td>';
+                                    }
+                                }                         
+                                $countTR++;
+                            }
+                echo '    
+                        </table>
+                    </section>
+                </div>
+            </div>';
+        }
     }elseif($d[0] == "l"){     
         $arrayList = unserialize($d[3]["value_array"]);
         if($d[3]["type_t"] == "c"){
@@ -192,5 +219,33 @@ $array[] = ["14","500 000"];
 $array[] = ["15","1 000 000"];
 echo serialize($array);
 $list = ["Уровни 1-4: 1к4","Уровни 5-9: 1к6","Уровни 10-12: 1к8","Уровни 13-15: 1к10"];
-echo serialize($list);*/
+echo serialize($list);
 
+$array = [];
+$array[] = ["Уровень","Название","Цена","Опыт","Ссылка"];
+$array[] = ["#[resurse.lvl(1)","#[item..name(38)","#[item..price(38)","#[resurse.exp(1)","#[item..url(38)"];
+$array[] = ["#[resurse.lvl(2)","#[item..name(39)","#[item..price(39)","#[resurse.exp(2)","#[item..url(39)"];
+$array[] = ["#[resurse.lvl(3)","#[item..name(40)","#[item..price(40)","#[resurse.exp(3)","#[item..url(40)"];
+$array[] = ["#[resurse.lvl(4)","#[item..name(41)","#[item..price(41)","#[resurse.exp(4)","#[item..url(41)"];
+$array[] = ["#[resurse.lvl(5)","#[item..name(42)","#[item..price(42)","#[resurse.exp(5)","#[item..url(42)"];
+$array[] = ["#[resurse.lvl(6)","#[item..name(43)","#[item..price(43)","#[resurse.exp(6)","#[item..url(43)"];
+$array[] = ["#[resurse.lvl(7)","#[item..name(44)","#[item..price(44)","#[resurse.exp(7)","#[item..url(44)"];
+$array[] = ["#[resurse.lvl(8)","#[item..name(45)","#[item..price(45)","#[resurse.exp(8)","#[item..url(45)"];
+$array[] = ["#[resurse.lvl(9)","#[item..name(46)","#[item..price(46)","#[resurse.exp(9)","#[item..url(46)"];
+$array[] = ["#[resurse.lvl(10)","#[item..name(47)","#[item..price(47)","#[resurse.exp(10)","#[item..url(47)"];
+$array[] = ["#[resurse.lvl(11)","#[item..name(48)","#[item..price(48)","#[resurse.exp(11)","#[item..url(48)"];
+$array[] = ["#[resurse.lvl(12)","#[item..name(49)","#[item..price(49)","#[resurse.exp(12)","#[item..url(49)"];
+$array[] = ["#[resurse.lvl(13)","#[item..name(50)","#[item..price(50)","#[resurse.exp(13)","#[item..url(50)"];
+$array[] = ["#[resurse.lvl(14)","#[item..name(51)","#[item..price(51)","#[resurse.exp(14)","#[item..url(51)"];
+$array[] = ["#[resurse.lvl(15)","#[item..name(52)","#[item..price(52)","#[resurse.exp(15)","#[item..url(52)"];
+$array[] = ["#[resurse.lvl(16)","#[item..name(53)","#[item..price(53)","#[resurse.exp(16)","#[item..url(53)"];
+$array[] = ["#[resurse.lvl(17)","#[item..name(54)","#[item..price(54)","#[resurse.exp(17)","#[item..url(54)"];
+$array[] = ["#[resurse.lvl(18)","#[item..name(55)","#[item..price(55)","#[resurse.exp(18)","#[item..url(55)"];
+$array[] = ["#[resurse.lvl(19)","#[item..name(56)","#[item..price(56)","#[resurse.exp(19)","#[item..url(56)"];
+$array[] = ["#[resurse.lvl(20)","#[item..name(57)","#[item..price(57)","#[resurse.exp(20)","#[item..url(57)"];
+$array[] = ["#[resurse.lvl(21)","#[item..name(58)","#[item..price(58)","#[resurse.exp(21)","#[item..url(58)"];
+$array[] = ["#[resurse.lvl(22)","#[item..name(59)","#[item..price(59)","#[resurse.exp(22)","#[item..url(59)"];
+$array[] = ["#[resurse.lvl(23)","#[item..name(60)","#[item..price(60)","#[resurse.exp(23)","#[item..url(60)"];
+$array[] = ["#[resurse.lvl(24)","#[item..name(61)","#[item..price(61)","#[resurse.exp(24)","#[item..url(61)"];
+$array[] = ["#[resurse.lvl(25)","#[item..name(62)","#[item..price(62)","#[resurse.exp(25)","#[item..url(62)"];
+echo serialize($array);*/

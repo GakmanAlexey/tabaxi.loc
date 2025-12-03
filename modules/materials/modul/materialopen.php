@@ -151,7 +151,6 @@ class Materialopen{
         return $data;
         
     }
-
     public function takeOther($pageLink)
     {
         return [];
